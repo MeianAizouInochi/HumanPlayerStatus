@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HumanPlayerStatusApp.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,16 @@ namespace HumanPlayerStatusApp
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+
+            MainWindow = new MainWindow()
+            {
+                DataContext = new MainViewModel()
+            };
+
+            MainWindow.Show();
+        }
     }
 }
