@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:HumanPlayerStatusApp"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewmodels="clr-namespace:HumanPlayerStatusApp.ViewModel"
     xmlns:views="clr-namespace:HumanPlayerStatusApp.Views"
     Title="Human Player Status Window"
     Width="800"
@@ -26,9 +27,17 @@
 
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" Content="{Binding WindowTitle}" />
+        <Label
+            Grid.Row="0"
+            HorizontalAlignment="Center"
+            Content="{Binding WindowTitle}"
+            FontSize="30" />
 
-        <Grid x:Name="ChildGrid_1" Grid.Row="1">
+        <Grid
+            x:Name="ChildGrid_1"
+            Grid.Row="1"
+            Margin="10,5,10,5"
+            HorizontalAlignment="Center">
 
             <Grid.ColumnDefinitions>
 
@@ -45,13 +54,24 @@
 
             <Image Grid.Column="0" />
 
-            <Label Grid.Column="1" Content="{Binding HumanPlayerNameLabel}" />
+            <Label
+                Grid.Column="1"
+                VerticalAlignment="Center"
+                Content="{Binding HumanPlayerNameLabel}"
+                FontSize="25" />
 
-            <TextBlock Grid.Column="2" Text="{Binding HumanPlayerName}" />
+            <TextBlock
+                Grid.Column="2"
+                VerticalAlignment="Center"
+                FontSize="25"
+                Text="{Binding HumanPlayerName}" />
 
         </Grid>
 
-        <Grid x:Name="ChildGrid_2" Grid.Row="2">
+        <Grid
+            x:Name="ChildGrid_2"
+            Grid.Row="2"
+            Margin="10,3,10,5">
 
             <Grid.ColumnDefinitions>
 
@@ -59,12 +79,41 @@
                 <ColumnDefinition Width="1*" />
 
                 <!--  Actual Data Column  -->
-                <ColumnDefinition Width="8*" />
+                <ColumnDefinition Width="9*" />
 
             </Grid.ColumnDefinitions>
 
+            <Border BorderBrush="red" BorderThickness="2">
 
-            <views:NavigationPane Grid.Column="0"/>
+                <views:NavigationPane Grid.Column="0" />
+
+            </Border>
+
+
+            <Grid Grid.Column="1">
+
+                <ContentControl Content="{Binding CurrentViewModel}">
+
+                    <ContentControl.Resources>
+
+                        <DataTemplate DataType="{x:Type viewmodels:DashboardViewModel}">
+
+                            <views:DashboardView />
+
+                        </DataTemplate>
+
+                        <DataTemplate DataType="{x:Type viewmodels:QuestsViewModel}">
+
+                            <views:QuestView />
+
+                        </DataTemplate>
+
+                    </ContentControl.Resources>
+
+                </ContentControl>
+
+            </Grid>
+
 
         </Grid>
 

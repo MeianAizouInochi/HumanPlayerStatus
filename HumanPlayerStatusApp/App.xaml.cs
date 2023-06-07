@@ -1,4 +1,5 @@
-﻿using HumanPlayerStatusApp.ViewModel;
+﻿using HumanPlayerStatusApp.Store;
+using HumanPlayerStatusApp.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -18,9 +19,11 @@ namespace HumanPlayerStatusApp
         {
             base.OnStartup(e);
 
+            NavigationStore navStore = new NavigationStore() { CurrentViewModel = new DashboardViewModel() };
+
             MainWindow = new MainWindow()
             {
-                DataContext = new MainViewModel()
+                DataContext = new MainViewModel(navStore) { WindowTitle="STATUS"}
             };
 
             MainWindow.Show();
