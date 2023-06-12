@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HumanPlayerStatusApp.Models.DaraAccess
+namespace HumanPlayerStatusApp.Store
 {
-    public interface IDataAccess
+    public class DataIntegrityFlagStore
     {
-        void getPlayerData();
+        public int Flag { get; set; }
     }
 }
