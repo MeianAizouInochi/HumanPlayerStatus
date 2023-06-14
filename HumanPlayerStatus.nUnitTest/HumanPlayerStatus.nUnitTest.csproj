@@ -19,7 +19,6 @@
   <ItemGroup>
     <ProjectReference Include="..\AzureCosmosDatabaseAccess\AzureCosmosDatabaseAccess.csproj" />
     <ProjectReference Include="..\DataModelLayer\DataModelLayer.csproj" />
-    <ProjectReference Include="..\HumanPlayerStatusApp\HumanPlayerStatusApp.csproj" />
   </ItemGroup>
 
 </Project>

@@ -11,4 +11,9 @@
     <PackageReference Include="LiveChartsCore.SkiaSharpView.WPF" Version="2.0.0-beta.710" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AzureCosmosDatabaseAccess\AzureCosmosDatabaseAccess.csproj" />
+    <ProjectReference Include="..\DataModelLayer\DataModelLayer.csproj" />
+  </ItemGroup>
+
 </Project>

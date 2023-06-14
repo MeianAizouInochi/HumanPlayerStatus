@@ -12,7 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DataModelLayer\DataModelLayer.csproj" />
-    <ProjectReference Include="..\HumanPlayerStatusApp\HumanPlayerStatusApp.csproj" />
+    <ProjectReference Include="..\HumanPlayerStatusException\HumanPlayerStatusExceptions.csproj" />
   </ItemGroup>
 
 </Project>

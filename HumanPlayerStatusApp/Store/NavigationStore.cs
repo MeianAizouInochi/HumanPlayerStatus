@@ -11,9 +11,9 @@ namespace HumanPlayerStatusApp.Store
     {
         public event Action? CurrentViewModelChanged;
 
-		private ViewModelBase currentViewModel;
+		private ViewModelBase? currentViewModel;
 
-		public ViewModelBase CurrentViewModel
+		public ViewModelBase? CurrentViewModel
 		{
 			get { return currentViewModel; }
 			set 

@@ -1,5 +1,4 @@
-
-using DataModelLayer;
+using DataModelLayer.DataModels;
 
 namespace HumanPlayerStatus.nUnitTest
 {
@@ -31,9 +30,9 @@ namespace HumanPlayerStatus.nUnitTest
         [Test]
         public async Task DbConnectivityCheck()
         {
-            await _context.UploadPlayerStats(_playerStats);
+            var obj = await _context.GetPlayerStats("HumanPlayerStatusData|Meian","Meian");
 
-            Assert.That(_context.ResponseCode, Is.EqualTo(200));
+            Assert.IsInstanceOf<PlayerStats>(obj);
         }
     }
 }
