@@ -34,5 +34,15 @@ namespace HumanPlayerStatus.nUnitTest
 
             Assert.IsInstanceOf<PlayerStats>(obj);
         }
+
+        [Test]
+        public async Task QueryDataCosmos() 
+        {
+            List<QuestModel> Quests = await _context.GetItemsInQuestContainer();
+
+            //Assert.That(Quests.Count, Is.EqualTo(2));
+            Assert.That(Quests[0].id, Is.EqualTo("01"));
+
+        }
     }
 }

@@ -4,6 +4,9 @@ using HumanPlayerStatusExceptions;
 using Microsoft.Azure.Cosmos;
 using System.Threading.Tasks;
 using System.Windows;
+using System;
+using System.Windows.Controls;
+using System.Collections.Generic;
 
 namespace AzureCosmosDatabaseAccess
 {
@@ -11,7 +14,9 @@ namespace AzureCosmosDatabaseAccess
     {
         private const string DatabaseId = "HumanPlayerStatusAppDatabase";
 
-        private const string ContainerId = "HumanPlayerStatusData";
+        private const string StatusContainerId = "HumanPlayerStatusData";
+
+        private const string QuestContainerId = "HumanPlayerQuestData";
 
         private CosmosClient _Client;
 
@@ -22,6 +27,7 @@ namespace AzureCosmosDatabaseAccess
         /// </summary>
         public AzureDBContext()
         {
+            //initializing client
             _Client = new(
                 accountEndpoint: "",
                 authKeyOrResourceToken: ""
@@ -37,10 +43,12 @@ namespace AzureCosmosDatabaseAccess
         /// <returns></returns>
         public async Task UploadPlayerStats(PlayerStats playerstats, DataIntegrityFlagStore? Flag = null) 
         {
+            //initialize Db and container reference.
             Database DB = _Client.GetDatabase(DatabaseId);
 
-            Container container = DB.GetContainer(ContainerId);
+            Container container = DB.GetContainer(StatusContainerId);
 
+            //Request-POST type
             try
             {
                 ItemResponse<PlayerStats> Response = await container.UpsertItemAsync(
@@ -85,6 +93,8 @@ namespace AzureCosmosDatabaseAccess
             } 
         }
 
+
+
         /// <summary>
         /// Reads the Player Stats data from the Database. Its asynchronous and returns a Task.
         /// </summary>
@@ -93,9 +103,10 @@ namespace AzureCosmosDatabaseAccess
         /// <returns></returns>
         public async Task<PlayerStats> GetPlayerStats(string _id,string _partitionkey) 
         {
+            //initialize DB and Container
             Database DB = _Client.GetDatabase(DatabaseId);
 
-            Container container = DB.GetContainer(ContainerId);
+            Container container = DB.GetContainer(StatusContainerId);
 
             ItemResponse<PlayerStats> response =  await container.ReadItemAsync<PlayerStats>( 
                 id:_id, 
@@ -105,5 +116,49 @@ namespace AzureCosmosDatabaseAccess
             return response.Resource;
         }
 
+
+
+
+        /// <summary>
+        /// This method gets all the items with the partition key "Quest" in the container HumanPlayerQuestData in Azure Cosmos DB.
+        /// </summary>
+        /// <returns>Task<List<QuestModel>></returns>
+        public async Task<List<QuestModel>> GetItemsInQuestContainer() 
+        {
+            //initialize DB and Container
+            Database Db = _Client.GetDatabase(DatabaseId);
+
+            Container container =  Db.GetContainer(QuestContainerId);
+
+            //Creating Query using the QueryDefinition Class.
+            var parameterizedQuery = new QueryDefinition
+                (
+                query: "SELECT * FROM HumanPlayerQuestData c WHERE c.Id = @partitionKey"
+                )
+                .WithParameter("@partitionKey", "Quest");
+
+
+            //Creating a Feed Iterator to read through page, and passing QueryDefinition
+            using FeedIterator<QuestModel> feed  = container.GetItemQueryIterator<QuestModel>(
+                queryDefinition: parameterizedQuery
+                );
+
+            //This will be returned.
+            List<QuestModel> Quests = new List<QuestModel>();
+
+            while (feed.HasMoreResults)
+            {
+                FeedResponse<QuestModel> res = await feed.ReadNextAsync();
+
+                //Adding Each item from the Reponse containing number of items, which is the amount of items a page can contain in Azure settings.
+                foreach (QuestModel _quest in res)
+                {
+                    Quests.Add(_quest);
+                }
+            }
+
+            //Returning the populated List.
+            return Quests;
+        }
     }
 }

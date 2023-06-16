@@ -10,113 +10,137 @@
     Title="Human Player Status Window"
     Width="800"
     Height="450"
+    AllowsTransparency="True"
+    Background="Transparent"
+    ResizeMode="CanResizeWithGrip"
+    WindowStyle="None"
     mc:Ignorable="d">
 
-    <Grid x:Name="MainWindowGrid_1">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Views/IconResources.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
 
-        <Grid.RowDefinitions>
+    <Border
+        Background="#59adfb"
+        BorderBrush="#0076e4"
+        BorderThickness="5"
+        CornerRadius="15"
+        Opacity="0.90">
 
-            <!--  Title Row  -->
-            <RowDefinition Height="auto" />
+        <Grid x:Name="MainWindowGrid_1" Margin="2.5,2.5,2.5,2.5">
 
-            <!--  Player Name And Pic Row  -->
-            <RowDefinition Height="auto" />
+            <Grid.RowDefinitions>
 
-            <!--  Info Row  -->
-            <RowDefinition Height="*" />
+                <!--  Title Row  -->
+                <RowDefinition Height="auto" />
 
-        </Grid.RowDefinitions>
+                <!--  Info Row  -->
+                <RowDefinition Height="*" />
 
-        <Label
-            Grid.Row="0"
-            HorizontalAlignment="Center"
-            Content="{Binding WindowTitle}"
-            FontSize="30" />
+            </Grid.RowDefinitions>
 
-        <Grid
-            x:Name="ChildGrid_1"
-            Grid.Row="1"
-            Margin="10,5,10,5"
-            HorizontalAlignment="Center">
+            <Border
+                BorderBrush="White"
+                BorderThickness="0,0,0,1"
+                Opacity="1">
+                <!--  Grid containing Title Row and Close Button  -->
+                <Grid Grid.Row="0">
 
-            <Grid.ColumnDefinitions>
+                    <Grid.ColumnDefinitions>
 
-                <!--  Circular Pic Column  -->
-                <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="*" />
 
-                <!--  Pic Label Column  -->
-                <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
 
-                <!--  Player Name Coumn  -->
-                <ColumnDefinition Width="*" />
+                    <!--  Window Title  -->
+                    <Label
+                        Grid.Column="0"
+                        HorizontalAlignment="Center"
+                        Content="{Binding WindowTitle}"
+                        FontFamily="Agency FB"
+                        FontSize="30"
+                        FontStyle="Normal"
+                        FontWeight="SemiBold" />
 
-            </Grid.ColumnDefinitions>
+                    <!--  Grid containing Close Button  -->
+                    <Grid
+                        Grid.Column="0"
+                        Width="auto"
+                        Height="auto"
+                        HorizontalAlignment="Right">
 
-            <Image Grid.Column="0" />
+                        <Button
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Command="{Binding CloseApp}">
+                            <ContentPresenter>
+                                <ContentPresenter.Content>
+                                    <ContentPresenter ContentTemplate="{StaticResource CloseIcon}" />
+                                </ContentPresenter.Content>
+                            </ContentPresenter>
+                        </Button>
+                    </Grid>
 
-            <Label
-                Grid.Column="1"
-                VerticalAlignment="Center"
-                Content="{Binding HumanPlayerNameLabel}"
-                FontSize="25" />
 
-            <TextBlock
-                Grid.Column="2"
-                VerticalAlignment="Center"
-                FontSize="25"
-                Text="{Binding HumanPlayerName}" />
 
-        </Grid>
-
-        <Grid
-            x:Name="ChildGrid_2"
-            Grid.Row="2"
-            Margin="10,3,10,5">
-
-            <Grid.ColumnDefinitions>
-
-                <!--  Navigation Menu Column  -->
-                <ColumnDefinition Width="1*" />
-
-                <!--  Actual Data Column  -->
-                <ColumnDefinition Width="9*" />
-
-            </Grid.ColumnDefinitions>
-
-            <Border BorderBrush="red" BorderThickness="2">
-
-                <views:NavigationPane Grid.Column="0" />
-
+                </Grid>
             </Border>
 
+            <Grid
+                x:Name="ChildGrid_2"
+                Grid.Row="1"
+                Margin="10,0,0,0">
 
-            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
 
-                <ContentControl Content="{Binding CurrentViewModel}">
+                    <!--  Navigation Menu Column  -->
+                    <ColumnDefinition Width="1*" />
 
-                    <ContentControl.Resources>
+                    <!--  Actual Data Column  -->
+                    <ColumnDefinition Width="9*" />
 
-                        <DataTemplate DataType="{x:Type viewmodels:DashboardViewModel}">
+                </Grid.ColumnDefinitions>
 
-                            <views:DashboardView />
+                <Border BorderBrush="White" BorderThickness="0,0,1,0">
 
-                        </DataTemplate>
+                    <views:NavigationPane Grid.Column="0" />
 
-                        <DataTemplate DataType="{x:Type viewmodels:QuestsViewModel}">
+                </Border>
 
-                            <views:QuestView />
 
-                        </DataTemplate>
+                <Grid Grid.Column="1">
 
-                    </ContentControl.Resources>
+                    <ContentControl Content="{Binding CurrentViewModel}">
 
-                </ContentControl>
+                        <ContentControl.Resources>
+
+                            <DataTemplate DataType="{x:Type viewmodels:DashboardViewModel}">
+
+                                <views:DashboardView />
+
+                            </DataTemplate>
+
+                            <DataTemplate DataType="{x:Type viewmodels:QuestsViewModel}">
+
+                                <views:QuestView />
+
+                            </DataTemplate>
+
+                        </ContentControl.Resources>
+
+                    </ContentControl>
+
+                </Grid>
+
 
             </Grid>
 
-
         </Grid>
+    </Border>
 
-    </Grid>
 
 </Window>

@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataModelLayer", "DataModel
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HumanPlayerStatus.nUnitTest", "HumanPlayerStatus.nUnitTest\HumanPlayerStatus.nUnitTest.csproj", "{3CABD01B-CB0E-45CF-926D-03F91AB37DC7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HumanPlayerStatusExceptions", "HumanPlayerStatusException\HumanPlayerStatusExceptions.csproj", "{B42F3165-6DD1-4D64-A1A0-736BF4EF9201}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HumanPlayerStatusExceptions", "HumanPlayerStatusException\HumanPlayerStatusExceptions.csproj", "{B42F3165-6DD1-4D64-A1A0-736BF4EF9201}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

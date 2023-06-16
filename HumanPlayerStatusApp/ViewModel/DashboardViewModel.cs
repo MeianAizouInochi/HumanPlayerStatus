@@ -19,13 +19,76 @@ namespace HumanPlayerStatusApp.ViewModel
     public class DashboardViewModel:ViewModelBase
     {
         public string Strength { get; }
+
         public string Agility { get;}
+
         public string Intelligence { get;  }
+        
         public string Communication { get;  }
+        
         public string MentalStability { get; }
+        
         public string Creativity { get;  }
+        
         public string HealthPoints { get;  }
+        
         public string Hygine { get;  }
+        
+        public string HumanPlayerNameLabel { get; set; }
+        
+        public string HumanPlayerName { get; set; }
+        
+        public string HumanPlayerLevelLabel { get; set; }
+
+        private int _humanPlayerLevel;
+
+        public int HumanPlayerLevel
+        {
+            get { return _humanPlayerLevel; }
+            set 
+            { 
+                _humanPlayerLevel = value;
+                OnPropertyChanged(nameof(HumanPlayerLevel));
+            }
+        }
+
+        private long _humanPlayerLevelMaxExp;
+
+        public long HumanPlayerLevelMaxExp
+        {
+            get { return _humanPlayerLevelMaxExp; }
+            set 
+            { 
+                _humanPlayerLevelMaxExp = value;
+
+                OnPropertyChanged(nameof(HumanPlayerLevelMaxExp));
+            }
+        }
+
+        private long _humanPlayerExp;
+
+        public long HumanPlayerExp
+        {
+            get { return _humanPlayerExp; }
+            set 
+            { 
+                _humanPlayerExp = value;
+                OnPropertyChanged(nameof(HumanPlayerExp));
+            }
+        }
+
+        private string? _humanPlayerExpPercent;
+
+        public string? HumanPlayerExpPercent
+        {
+            get { return _humanPlayerExpPercent; }
+            set 
+            { 
+                _humanPlayerExpPercent = value;
+                OnPropertyChanged(nameof(HumanPlayerExpPercent));
+            }
+        }
+
 
         private int str;
 
@@ -79,6 +142,7 @@ namespace HumanPlayerStatusApp.ViewModel
                 OnPropertyChanged(nameof(Comm));
             }
         }
+
         private int menstb;
 
         public int MenStb
@@ -131,9 +195,10 @@ namespace HumanPlayerStatusApp.ViewModel
                 OnPropertyChanged(nameof(Hyg));
             }
         }
-        private ISeries[] series;
 
-        public ISeries[] Series
+        private ISeries[]? series;
+
+        public ISeries[]? Series
         {
             get { return series; }
             set 
@@ -143,11 +208,9 @@ namespace HumanPlayerStatusApp.ViewModel
             }
         }
 
+        private PolarAxis[]? angleAxes;
 
-
-        private PolarAxis[] angleAxes;
-
-        public PolarAxis[] AngleAxes
+        public PolarAxis[]? AngleAxes
         {
             get { return angleAxes; }
             set
@@ -157,13 +220,16 @@ namespace HumanPlayerStatusApp.ViewModel
             }
         }
 
-
         private AzureDBContext? dBContext { get; }
 
         public PlayerStats? _playerStats { get; }
 
         public DashboardViewModel()
         {
+            HumanPlayerNameLabel = "Name: ";
+
+            HumanPlayerName = "Meian";
+
             Strength = "STR : ";
 
             Agility = "AGI : ";
@@ -180,6 +246,8 @@ namespace HumanPlayerStatusApp.ViewModel
 
             Hygine = "HYG : ";
 
+            HumanPlayerLevelLabel = "Lv: ";
+
             dBContext = new AzureDBContext();
 
             _ = MakeHumanPlayerStatReadAPICall();
@@ -195,6 +263,9 @@ namespace HumanPlayerStatusApp.ViewModel
         {
             PlayerStats _GetPlayerStats = await dBContext.GetPlayerStats(IDStore.UniqueId, IDStore.PartitionKey);
 
+            HumanPlayerExp = _GetPlayerStats.HumanPlayerExp;
+            HumanPlayerLevelMaxExp = _GetPlayerStats.HumanPlayerLevelMaxExp;
+            HumanPlayerLevel = _GetPlayerStats.HumanPlayerLevel;
             Str = _GetPlayerStats.STR;
             Agi = _GetPlayerStats.AGI;
             Int = _GetPlayerStats.INT;
@@ -203,6 +274,10 @@ namespace HumanPlayerStatusApp.ViewModel
             Crt = _GetPlayerStats.CRT;
             Hp = _GetPlayerStats.HP;
             Hyg = _GetPlayerStats.HYG;
+
+            var TempExpPercent = (HumanPlayerExp * 100) / HumanPlayerLevelMaxExp;
+
+            HumanPlayerExpPercent = TempExpPercent.ToString() + "%";
         }
 
         private void UpdateGraph()
@@ -214,7 +289,6 @@ namespace HumanPlayerStatusApp.ViewModel
                 Fill = new SolidColorPaint(SKColors.LightGreen.WithAlpha(90))
             } 
             };
-
 
         }
 

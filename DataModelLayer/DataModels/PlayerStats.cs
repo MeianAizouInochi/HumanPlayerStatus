@@ -8,6 +8,12 @@ namespace DataModelLayer.DataModels
 
         public string? Id { get; set; }
 
+        public int HumanPlayerLevel { get; set; }
+
+        public long HumanPlayerExp { get; set; }
+
+        public long HumanPlayerLevelMaxExp { get; set; }
+
         public int STR { get; set; }
 
         public int AGI { get; set; }

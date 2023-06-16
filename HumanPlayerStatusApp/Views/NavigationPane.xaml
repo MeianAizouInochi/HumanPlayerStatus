@@ -22,7 +22,7 @@
 
     </UserControl.Resources>
 
-    <Grid x:Name="NavigationmenuGrid_1">
+    <Grid x:Name="NavigationmenuGrid_1" VerticalAlignment="Center">
 
         <Grid.RowDefinitions>
 

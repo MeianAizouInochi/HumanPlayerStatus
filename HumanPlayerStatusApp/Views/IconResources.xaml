@@ -245,6 +245,55 @@
         </Viewbox>
     </DataTemplate>
 
+    <DataTemplate x:Key="PlusIcon">
+        <Viewbox>
+            <Canvas
+                Name="svg13"
+                Width="48"
+                Height="48">
+                <Canvas.RenderTransform>
+                    <TranslateTransform X="0" Y="0" />
+                </Canvas.RenderTransform>
+                <Path
+                    Name="path8"
+                    Data="m 23.233414 32.598894 a 2 2 0 0 1 -2 -2 v -16.5 a 2 2 0 0 1 4 0 v 16.5 a 2 2 0 0 1 -2 2 z"
+                    Fill="#FF38B1E7" />
+                <Path
+                    Name="path10"
+                    Data="m 31.233414 24.348894 h -16 a 2 2 0 0 1 0 -4 h 16 a 2 2 0 0 1 0 4 z"
+                    Fill="#FF38B1E7" />
+            </Canvas>
+
+        </Viewbox>
+    </DataTemplate>
+
+    <DataTemplate x:Key="CloseIcon">
+        <Viewbox Width="40" Height="40">
+            <Canvas
+                Name="svg6"
+                Width="40"
+                Height="40">
+                <Canvas.RenderTransform>
+                    <TranslateTransform X="0" Y="0" />
+                </Canvas.RenderTransform>
+                <Canvas.Resources />
+
+                <Canvas Name="g118">
+                    <Canvas.RenderTransform>
+                        <TranslateTransform X="-0.73710072" Y="-0.24570027" />
+                    </Canvas.RenderTransform>
+                    <Path
+                        Name="path2"
+                        Data="M 21 24.15 8.857 36.293 4.707 32.143 16.85 20 4.707 7.857 8.857 3.707 21 15.85 33.143 3.707 37.293 7.857 25.15 20 l 12.143 12.143 -4.15 4.15 z"
+                        Fill="#FFDFF0FE" />
+                    <Path
+                        Name="path4"
+                        Data="M 33.143 4.414 36.586 7.857 25.15 19.293 24.443 20 25.15 20.707 36.586 32.143 33.143 35.586 21.707 24.15 21 23.443 20.293 24.15 8.857 35.586 5.414 32.143 16.85 20.707 17.557 20 16.85 19.293 5.414 7.857 8.857 4.414 20.293 15.85 21 16.557 21.707 15.85 33.143 4.414 M 33.143 3 21 15.143 8.857 3 4 7.857 16.143 20 4 32.143 8.857 37 21 24.857 33.143 37 38 32.143 25.857 20 38 7.857 Z"
+                        Fill="#FF4788C7" />
+                </Canvas>
+            </Canvas>
+        </Viewbox>
+    </DataTemplate>
 
 </ResourceDictionary>
 

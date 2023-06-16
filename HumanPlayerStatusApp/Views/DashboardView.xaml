@@ -9,9 +9,123 @@
     d:DesignWidth="800"
     mc:Ignorable="d">
 
-    <Border BorderBrush="Black" BorderThickness="3">
+    <Grid x:Name="DashboardGrid_1">
 
-        <Grid x:Name="DashboardGrid_1" Margin="0,0,0,0">
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="auto" />
+
+            <RowDefinition Height="*" />
+
+        </Grid.RowDefinitions>
+
+        <Border BorderBrush="White" BorderThickness="0,0,0,1">
+
+            <!--  Grid containing Player Name, Level and Exp Amount  -->
+            <Grid
+                x:Name="ChildGrid_1"
+                Grid.Row="0"
+                Margin="10,5,10,5">
+
+                <Grid.ColumnDefinitions>
+
+                    <!--  HumanPlayer Level Details Column  -->
+                    <ColumnDefinition Width="*" />
+
+                    <!--  HumanPlayer Name Details Column  -->
+                    <ColumnDefinition Width="auto" />
+
+                </Grid.ColumnDefinitions>
+
+                <Grid
+                    x:Name="Child_of_ChildGrid_1_PlayerLevelGrid"
+                    Grid.Column="0"
+                    Margin="0,0,10,0"
+                    HorizontalAlignment="Left">
+
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition Width="auto" />
+
+                        <ColumnDefinition Width="auto" />
+
+                        <ColumnDefinition Width="*" />
+
+                        <ColumnDefinition Width="auto" />
+
+                    </Grid.ColumnDefinitions>
+
+                    <Label
+                        Grid.Column="0"
+                        VerticalAlignment="Center"
+                        Content="{Binding HumanPlayerLevelLabel}"
+                        FontSize="15" />
+
+                    <Label
+                        Grid.Column="1"
+                        VerticalAlignment="Center"
+                        Content="{Binding HumanPlayerLevel}"
+                        FontSize="15" />
+
+                    <ProgressBar
+                        Grid.Column="2"
+                        Width="{Binding ActualWidth, ElementName=Child_of_ChildGrid_1_PlayerLevelGrid}"
+                        Height="15"
+                        Maximum="{Binding HumanPlayerLevelMaxExp}"
+                        Minimum="0"
+                        Value="{Binding HumanPlayerExp}" />
+
+                    <Label
+                        Grid.Column="3"
+                        VerticalAlignment="Center"
+                        Content="{Binding HumanPlayerExpPercent}"
+                        FontSize="15" />
+
+
+                </Grid>
+
+                <Grid
+                    x:Name="Child_of_ChildGrid_2_PlayerDetailsGrid"
+                    Grid.Column="1"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center">
+
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition Width="auto" />
+
+                        <ColumnDefinition Width="*" />
+
+                    </Grid.ColumnDefinitions>
+
+                    <Label
+                        Grid.Column="0"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Content="{Binding HumanPlayerNameLabel}"
+                        FontSize="15"
+                        FontWeight="DemiBold" />
+
+                    <TextBlock
+                        Grid.Column="1"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        FontSize="15"
+                        FontStretch="Expanded"
+                        FontStyle="Normal"
+                        FontWeight="Thin"
+                        Text="{Binding HumanPlayerName}" />
+
+                </Grid>
+
+            </Grid>
+
+        </Border>
+
+        <Grid
+            x:Name="ChildGrid_2"
+            Grid.Row="1"
+            Margin="0,0,0,0">
 
             <Grid.ColumnDefinitions>
 
@@ -21,10 +135,10 @@
 
             </Grid.ColumnDefinitions>
 
-            <Border BorderBrush="red" BorderThickness="2">
+            <Border BorderBrush="White" BorderThickness="0,0,1,0">
 
                 <Grid
-                    x:Name="ChildGrid_2"
+                    x:Name="Child_of_ChildGrid_2_StatsGrid"
                     Grid.Column="0"
                     HorizontalAlignment="Center">
 
@@ -172,18 +286,17 @@
 
             </Border>
 
-            <Grid Grid.Column="1">
+            <Grid x:Name="Child_of_ChildGrid_2_StatChartGrid" Grid.Column="1">
 
                 <lvc:PolarChart
                     AngleAxes="{Binding AngleAxes}"
                     InitialRotation="-45"
-                    Series="{Binding Series}"
-                    />
+                    Series="{Binding Series}" />
 
             </Grid>
 
         </Grid>
 
-    </Border>
+    </Grid>
 
 </UserControl>

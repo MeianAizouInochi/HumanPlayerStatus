@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace HumanPlayerStatusApp.ViewModel
 {
@@ -18,11 +19,7 @@ namespace HumanPlayerStatusApp.ViewModel
     {
         public string WindowTitle { get; set; } = "STATUS";
 
-        public string HumanPlayerNameLabel { get; set; }
-
-        public string HumanPlayerName { get; set; }
-
-
+        public ICommand CloseApp { get; }
 
         public NavigationMenuItemsList navigationMenuItemsList { get; set; }
 
@@ -39,14 +36,14 @@ namespace HumanPlayerStatusApp.ViewModel
 
             this.navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
 
-            HumanPlayerNameLabel = "Name: ";
-
-            HumanPlayerName = "Meian";
+            
 
             navigationMenuItemsList = new NavigationMenuItemsList() {
                 NavigateToDashboardCommand = new NavigationCommand(navigationStore,0),
                 NavigateToQuestCommand = new NavigationCommand(navigationStore,1)
             };
+
+            CloseApp = new CloseApplicationCommand();
         }
 
         private void OnCurrentViewModelChanged()
