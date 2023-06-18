@@ -1,5 +1,6 @@
 ﻿using AzureCosmosDatabaseAccess;
 using DataModelLayer.DataModels;
+using HumanPlayerStatusApp.Commands;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -38,14 +39,15 @@ namespace HumanPlayerStatusApp.ViewModel
 
             foreach (QuestModel Q in Quests)
             {
-                QuestList.Add(new QuestListItemViewModel() 
+                QuestList.Add(new QuestListItemViewModel(Q) 
                 { 
                     QuestDescription = Q.QuestDescription,
-                    IncrementAmount = Q.IncrementAmount,
-                    IncrementStatType = Q.IncrementStatType,
+                    IncrementAmountDetails = Q.IncrementAmount.ToString() + " " + Q.IncrementStatType,
                     StackedNumber = Q.StackedNumber,
-                    ImagePath = "",
-                    StackedLabel = "Stacked : "
+                    QuestAcceptedFlag = Q.QuestAcceptedFlag,
+                    AcceptButtonLabel = "Accept Quest",
+                    DeclineButtonLabel = "Decline Quest",
+                    SubmitButtonLabel = "Submit Quest"
                 });
             }
 

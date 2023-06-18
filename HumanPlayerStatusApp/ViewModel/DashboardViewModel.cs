@@ -40,9 +40,9 @@ namespace HumanPlayerStatusApp.ViewModel
         
         public string HumanPlayerLevelLabel { get; set; }
 
-        private int _humanPlayerLevel;
+        private long _humanPlayerLevel;
 
-        public int HumanPlayerLevel
+        public long HumanPlayerLevel
         {
             get { return _humanPlayerLevel; }
             set 
@@ -90,9 +90,9 @@ namespace HumanPlayerStatusApp.ViewModel
         }
 
 
-        private int str;
+        private double str;
 
-        public int Str
+        public double Str
         {
             get { return str; }
             
@@ -104,9 +104,9 @@ namespace HumanPlayerStatusApp.ViewModel
             }
         }
 
-        private int agi;
+        private double agi;
 
-        public int Agi
+        public double Agi
         {
             get { return agi; }
             set 
@@ -117,9 +117,9 @@ namespace HumanPlayerStatusApp.ViewModel
             }
         }
 
-        private int _int;
+        private double _int;
 
-        public int Int
+        public double Int
         {
             get { return _int; }
             set 
@@ -130,9 +130,9 @@ namespace HumanPlayerStatusApp.ViewModel
             }
         }
 
-        private int comm;
+        private double comm;
 
-        public int Comm
+        public double Comm
         {
             get { return comm; }
             set 
@@ -143,9 +143,9 @@ namespace HumanPlayerStatusApp.ViewModel
             }
         }
 
-        private int menstb;
+        private double menstb;
 
-        public int MenStb
+        public double MenStb
         {
             get { return menstb; }
             set 
@@ -156,9 +156,9 @@ namespace HumanPlayerStatusApp.ViewModel
             }
         }
 
-        private int crt;
+        private double crt;
 
-        public int Crt
+        public double Crt
         {
             get { return crt; }
             set 
@@ -170,9 +170,9 @@ namespace HumanPlayerStatusApp.ViewModel
             }
         }
 
-        private int hp;
+        private double hp;
 
-        public int Hp
+        public double Hp
         {
             get { return hp; }
             set 
@@ -183,9 +183,9 @@ namespace HumanPlayerStatusApp.ViewModel
             }
         }
 
-        private int hyg;
+        private double hyg;
 
-        public int Hyg
+        public double Hyg
         {
             get { return hyg; }
             set 
@@ -282,7 +282,7 @@ namespace HumanPlayerStatusApp.ViewModel
 
         private void UpdateGraph()
         {
-            Series = new ISeries[] { new PolarLineSeries<int> {
+            Series = new ISeries[] { new PolarLineSeries<double> {
                 Values=new[]{Str,Agi,Int,Comm,MenStb,Crt,Hp,Hyg },
                 LineSmoothness=0,
                 GeometrySize=0,

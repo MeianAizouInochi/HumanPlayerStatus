@@ -295,6 +295,220 @@
         </Viewbox>
     </DataTemplate>
 
+    <DataTemplate x:Key="StackIcon">
+
+        <Viewbox Width="18" Height="17.999925">
+
+            <Canvas
+                Name="svg9"
+                Width="18"
+                Height="17.999925">
+                <Canvas.RenderTransform>
+                    <TranslateTransform X="0" Y="0" />
+                </Canvas.RenderTransform>
+                <Canvas.Resources />
+                <!--  Unknown tag: sodipodi:namedview  -->
+                <Canvas Name="SVGRepo_bgCarrier">
+                    <Canvas.RenderTransform>
+                        <TranslateTransform X="-3.029484" Y="-2.3808354" />
+                    </Canvas.RenderTransform>
+                </Canvas>
+                <Canvas Name="SVGRepo_tracerCarrier">
+                    <Canvas.RenderTransform>
+                        <TranslateTransform X="-3.029484" Y="-2.3808354" />
+                    </Canvas.RenderTransform>
+                </Canvas>
+                <Canvas Name="g176">
+                    <Canvas.RenderTransform>
+                        <TranslateTransform X="-3" Y="-3" />
+                    </Canvas.RenderTransform>
+                    <Canvas Name="SVGRepo_iconCarrier">
+                        <Path
+                            Name="path4"
+                            Data="M 8.04582 10.8715 C 8.52718 10.6007 8.6979 9.99103 8.42713 9.50967 8.15637 9.02831 7.54665 8.85759 7.0653 9.12836 L 3.50974 11.1284 c -0.32249 0.1814 -0.51846 0.526 -0.50944 0.8959 0.00901 0.3699 0.22154 0.7046 0.55249 0.8701 l 2.07979 1.0399 -2.12284 1.1941 c -0.32249 0.1814 -0.51846 0.526 -0.50944 0.8959 0.00901 0.3699 0.22154 0.7046 0.55249 0.8701 l 8.00001 4 c 0.2815 0.1407 0.6129 0.1407 0.8944 0 l 8 -4 c 0.331 -0.1655 0.5435 -0.5002 0.5525 -0.8701 0.009 -0.3699 -0.1869 -0.7145 -0.5094 -0.8959 l -2.1229 -1.1941 2.0798 -1.0399 c 0.331 -0.1655 0.5435 -0.5002 0.5525 -0.8701 0.009 -0.3699 -0.1869 -0.7145 -0.5094 -0.8959 L 16.9347 9.12836 C 16.4533 8.85759 15.8436 9.02831 15.5729 9.50967 15.3021 9.99103 15.4728 10.6007 15.9542 10.8715 L 17.8679 11.948 12 14.8819 6.13213 11.948 Z m 8.16188 4.1426 -3.7605 1.8803 c -0.2815 0.1407 -0.6129 0.1407 -0.8944 0 L 7.7923 15.0141 6.13213 15.948 12 18.8819 17.8679 15.948 Z"
+                            Fill="#FFC200BB" />
+                        <Path
+                            Name="path6"
+                            Data="m 12.4472 3.10557 c -0.2815 -0.14076 -0.6129 -0.14076 -0.8944 0 l -8.00001 4 C 3.214 7.27496 3 7.62123 3 8 3 8.37877 3.214 8.72504 3.55279 8.89443 l 8.00001 3.99997 c 0.2815 0.1408 0.6129 0.1408 0.8944 0 l 8 -3.99997 C 20.786 8.72504 21 8.37877 21 8 21 7.62123 20.786 7.27496 20.4472 7.10557 Z"
+                            Fill="#FFFFEA00" />
+                    </Canvas>
+                </Canvas>
+            </Canvas>
+
+        </Viewbox>
+
+    </DataTemplate>
+
+    <DataTemplate x:Key="LevelUpIcon">
+        <Viewbox Width="16.00989" Height="20.011597">
+            <Canvas
+                Name="tripleupsign"
+                Width="16.00989"
+                Height="20.011597">
+                <Canvas.RenderTransform>
+                    <TranslateTransform X="0" Y="0" />
+                </Canvas.RenderTransform>
+                <Canvas.Resources />
+                <!--  Unknown tag: sodipodi:namedview  -->
+                <Canvas Name="SVGRepo_bgCarrier">
+                    <Canvas.RenderTransform>
+                        <TranslateTransform X="-3.9959084" Y="-1.9942017" />
+                    </Canvas.RenderTransform>
+                </Canvas>
+                <Canvas Name="SVGRepo_tracerCarrier">
+                    <Canvas.RenderTransform>
+                        <TranslateTransform X="-3.9959084" Y="-1.9942017" />
+                    </Canvas.RenderTransform>
+                </Canvas>
+                <Canvas Name="g173">
+                    <Canvas.RenderTransform>
+                        <TranslateTransform X="-3.9959084" Y="-1.9942017" />
+                    </Canvas.RenderTransform>
+                    <Canvas Name="SVGRepo_iconCarrier">
+                        <Path
+                            Name="secondary"
+                            Data="M 19 16.5 A 1 1 0 0 1 18.29 16.21 L 12 9.91 5.71 16.21 A 1.0040916 1.0040916 0 0 1 4.29 14.79 l 7 -7 a 1 1 0 0 1 1.42 0 l 7 7 a 1 1 0 0 1 0 1.42 A 1 1 0 0 1 19 16.5 Z"
+                            Fill="#FFBF1FF9" />
+                        <Path
+                            Name="primary"
+                            Data="M 19 11 A 1 1 0 0 1 18.29 10.71 L 12 4.41 5.71 10.71 A 1.0040916 1.0040916 0 0 1 4.29 9.29 l 7 -7 a 1 1 0 0 1 1.42 0 l 7 7 a 1 1 0 0 1 0 1.42 A 1 1 0 0 1 19 11 Z m 0.71 10.71 a 1 1 0 0 0 0 -1.42 l -7 -7 a 1 1 0 0 0 -1.42 0 l -7 7 a 1.0040916 1.0040916 0 0 0 1.42 1.42 l 6.29 -6.3 6.29 6.3 a 1 1 0 0 0 1.42 0 z"
+                            Fill="#FFDBF03D" />
+                    </Canvas>
+                </Canvas>
+            </Canvas>
+
+        </Viewbox>
+    </DataTemplate>
+
+    <DataTemplate x:Key="AcceptIcon">
+        <Viewbox Width="15" Height="15">
+            <Canvas
+                Name="svg193"
+                Width="5.8536587"
+                Height="5.8536587">
+                <Canvas.RenderTransform>
+                    <TranslateTransform X="0" Y="0" />
+                </Canvas.RenderTransform>
+                <Canvas.Resources />
+                <!--  Unknown tag: sodipodi:namedview  -->
+                <Canvas Name="SVGRepo_bgCarrier">
+                    <Canvas.RenderTransform>
+                        <TranslateTransform X="-7.1563101" Y="-7.1463955" />
+                    </Canvas.RenderTransform>
+                </Canvas>
+                <Canvas Name="SVGRepo_tracerCarrier">
+                    <Canvas.RenderTransform>
+                        <TranslateTransform X="-7.1563101" Y="-7.1463955" />
+                    </Canvas.RenderTransform>
+                </Canvas>
+                <Canvas Name="SVGRepo_iconCarrier">
+                    <Canvas.RenderTransform>
+                        <TranslateTransform X="-7.1563101" Y="-7.1463955" />
+                    </Canvas.RenderTransform>
+                    <Canvas Name="g190">
+                        <Canvas.RenderTransform>
+                            <TranslateTransform X="0" Y="-1038.3622" />
+                        </Canvas.RenderTransform>
+                        <Ellipse
+                            Name="circle186"
+                            Canvas.Left="7.2"
+                            Canvas.Top="1045.5"
+                            Width="5.9"
+                            Height="5.9"
+                            Fill="#FF2DC02A" />
+                        <Path
+                            Name="path188"
+                            Data="m 11.400211 1047.0597 -1.6682923 1.6683 -0.7902439 -0.7902 -0.6146341 0.6439 1.404878 1.4049 2.2829273 -2.283 z"
+                            Fill="#FFA7ECE0" />
+                    </Canvas>
+                </Canvas>
+            </Canvas>
+
+        </Viewbox>
+    </DataTemplate>
+
+    <DataTemplate x:Key="DeclineIcon">
+
+        <Viewbox Width="15" Height="15">
+            <Canvas
+                Name="svg13"
+                Width="425"
+                Height="425">
+                <Canvas.RenderTransform>
+                    <TranslateTransform X="0" Y="0" />
+                </Canvas.RenderTransform>
+                <Canvas.Resources />
+                <!--  Unknown tag: sodipodi:namedview  -->
+                <Canvas Name="SVGRepo_bgCarrier">
+                    <Canvas.RenderTransform>
+                        <TranslateTransform X="-50.74" Y="-43.5" />
+                    </Canvas.RenderTransform>
+                </Canvas>
+                <Canvas Name="SVGRepo_tracerCarrier">
+                    <Canvas.RenderTransform>
+                        <TranslateTransform X="-50.74" Y="-43.5" />
+                    </Canvas.RenderTransform>
+                </Canvas>
+                <Canvas Name="SVGRepo_iconCarrier">
+                    <Canvas.RenderTransform>
+                        <TranslateTransform X="-50.74" Y="-43.5" />
+                    </Canvas.RenderTransform>
+                    <Canvas Name="Layer_1" />
+                    <Canvas Name="Layer_2">
+                        <Canvas Name="g9">
+                            <Path
+                                Name="path7"
+                                Data="m 263.24 43.5 c -117.36 0 -212.5 95.14 -212.5 212.5 0 117.36 95.14 212.5 212.5 212.5 117.36 0 212.5 -95.14 212.5 -212.5 0 -117.36 -95.14 -212.5 -212.5 -212.5 z m 104.59 254.86 c 17.18 17.18 17.18 45.04 0 62.23 v 0 c -17.18 17.18 -45.04 17.18 -62.23 0 l -42.36 -42.36 -42.36 42.36 c -17.18 17.18 -45.04 17.18 -62.23 0 v 0 c -17.18 -17.18 -17.18 -45.04 0 -62.23 L 201.01 256 158.65 213.64 c -17.18 -17.18 -17.18 -45.04 0 -62.23 v 0 c 17.18 -17.18 45.04 -17.18 62.23 0 l 42.36 42.36 42.36 -42.36 c 17.18 -17.18 45.04 -17.18 62.23 0 v 0 c 17.18 17.18 17.18 45.04 0 62.23 L 325.46 256 Z"
+                                Fill="#FF000000" />
+                        </Canvas>
+                    </Canvas>
+                </Canvas>
+            </Canvas>
+
+        </Viewbox>
+
+    </DataTemplate>
+
+    <DataTemplate x:Key="SubmitIcon">
+        <Viewbox Width="15" Height="15">
+            <Canvas
+                Name="Layer_1"
+                Width="55.961384"
+                Height="55.999969">
+                <Canvas.RenderTransform>
+                    <TranslateTransform X="0" Y="0" />
+                </Canvas.RenderTransform>
+                <Canvas.Resources />
+                <!--  Unknown tag: sodipodi:namedview  -->
+                <Canvas Name="SVGRepo_bgCarrier">
+                    <Canvas.RenderTransform>
+                        <TranslateTransform X="-4.0418347" Y="-4.0000313" />
+                    </Canvas.RenderTransform>
+                </Canvas>
+                <Canvas Name="SVGRepo_tracerCarrier">
+                    <Canvas.RenderTransform>
+                        <TranslateTransform X="-4.0418347" Y="-4.0000313" />
+                    </Canvas.RenderTransform>
+                </Canvas>
+                <Canvas Name="SVGRepo_iconCarrier">
+                    <Canvas.RenderTransform>
+                        <TranslateTransform X="-4.0418347" Y="-4.0000313" />
+                    </Canvas.RenderTransform>
+                    <Path
+                        Name="path10"
+                        Data="M 28.46 42.29 A 2 2 0 0 1 27 41.71 l -9.5 -9.5 a 2.0011122 2.0011122 0 0 1 2.83 -2.83 l 8.09 8.09 15.21 -15.18 a 2.0011122 2.0011122 0 1 1 2.83 2.83 L 29.87 41.71 a 2 2 0 0 1 -1.41 0.58 z"
+                        Fill="#FF000000" />
+                    <Path
+                        Name="path12"
+                        Data="M 32 60 A 28 28 0 1 1 60 30.47 2 2 0 0 1 58.12 32.58 2 2 0 0 1 56 30.69 24 24 0 1 0 39.64 54.75 23.86 23.86 0 0 0 53.58 42.51 2 2 0 1 1 57.17 44.26 27.78 27.78 0 0 1 40.91 58.55 28.14 28.14 0 0 1 32 60 Z"
+                        Fill="#FF000000" />
+                    <Canvas.Resources />
+                </Canvas>
+            </Canvas>
+
+        </Viewbox>
+    </DataTemplate>
+
 </ResourceDictionary>
 
 <!--<Canvas

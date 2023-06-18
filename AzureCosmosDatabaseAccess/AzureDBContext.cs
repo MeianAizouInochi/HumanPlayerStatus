@@ -18,6 +18,8 @@ namespace AzureCosmosDatabaseAccess
 
         private const string QuestContainerId = "HumanPlayerQuestData";
 
+        private const string QuestContainer_quest_PartitionKey = "Quest";
+
         private CosmosClient _Client;
 
         public int ResponseCode { get; set; } = -1;
@@ -159,6 +161,60 @@ namespace AzureCosmosDatabaseAccess
 
             //Returning the populated List.
             return Quests;
+        }
+
+
+
+        public async Task UpdateQuest(QuestModel _Quest) 
+        {
+            Database DB = _Client.GetDatabase(DatabaseId);
+
+            Container container = DB.GetContainer(QuestContainerId);
+
+            try 
+            {
+                ItemResponse<QuestModel> response = await container.UpsertItemAsync(
+                    item: _Quest,
+                    partitionKey: new PartitionKey(QuestContainer_quest_PartitionKey)
+                    );
+
+                int ResponseCode = (int)response.StatusCode;
+
+                // TODO: Provide Paths for all response codes.
+                switch (ResponseCode)
+                {
+                    case 200:
+                        {
+                            //all went well
+                            break;
+                        }
+                    case 201:
+                        {
+                            //all went well
+                            break;
+                        }
+                    case 204:
+                        {
+                            break;
+                        }
+                    case 400:
+                        {
+                            throw new HumanPlayerStatusException((new HumanPlayerStatusExceptionMessages()).BadRequestError);
+                        }
+                    default:
+                        {
+                            //something went wrong
+                            throw new HumanPlayerStatusException((new HumanPlayerStatusExceptionMessages()).UnexpectedError);
+                        }
+                }
+
+            }
+            catch (Exception ex) 
+            {
+
+            }
+
+
         }
     }
 }

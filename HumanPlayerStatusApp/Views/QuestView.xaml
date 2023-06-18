@@ -24,8 +24,22 @@
 
     <Grid x:Name="QuestViewGrid_1">
 
+        <!--  2 Columns  -->
+        <Grid.ColumnDefinitions>
+
+            <!--  Quest List Column  -->
+            <ColumnDefinition Width="0.5*" />
+
+            <!--  Other Details Column  -->
+            <ColumnDefinition Width="0.5*" />
+
+        </Grid.ColumnDefinitions>
+
         <ListView
+            Grid.Column="0"
             Background="Transparent"
+            BorderBrush="White"
+            BorderThickness="0,0,1,0"
             ItemsSource="{Binding QuestList}"
             ScrollViewer.HorizontalScrollBarVisibility="Hidden"
             ScrollViewer.VerticalScrollBarVisibility="Hidden">
@@ -34,76 +48,416 @@
 
                 <DataTemplate>
 
-                    <Grid x:Name="QuestListViewItem_1">
+                    <Border
+                        Margin="5"
+                        Padding="15,10,15,10"
+                        BorderBrush="White"
+                        BorderThickness="3"
+                        CornerRadius="15">
 
-                        <Grid.ColumnDefinitions>
+                        <Grid x:Name="QuestListViewItem_1">
 
-                            <ColumnDefinition Width="*" />
+                            <!--  1 Row  -->
+                            <Grid.RowDefinitions>
 
-                            <ColumnDefinition Width="*" />
+                                <RowDefinition Height="auto" />
 
-                            <ColumnDefinition Width="*" />
+                            </Grid.RowDefinitions>
 
-                        </Grid.ColumnDefinitions>
+                            <Grid x:Name="ChildofGrid_1_Item1" Grid.Row="0">
 
-                        <Border BorderBrush="red" BorderThickness="1">
-
-                            <Grid Grid.Column="0">
-
+                                <!--  3 Rows  -->
                                 <Grid.RowDefinitions>
 
-                                    <RowDefinition Height="0.3*" />
+                                    <RowDefinition Height="auto" />
 
-                                    <RowDefinition Height="0.3*" />
+                                    <RowDefinition Height="auto" />
 
-                                    <RowDefinition Height="0.3*" />
+                                    <RowDefinition Height="auto" />
 
                                 </Grid.RowDefinitions>
 
-                                <Grid.ColumnDefinitions>
+                                <!--  Quest Description  -->
+                                <TextBlock
+                                    Grid.Row="0"
+                                    FontSize="15"
+                                    Text="{Binding QuestDescription}"
+                                    TextWrapping="Wrap" />
 
-                                    <ColumnDefinition Width="0.25*" />
+                                <!--  Quest Statistics Details  -->
+                                <Grid x:Name="Child_of_ChildGrid_1" Grid.Row="1">
 
-                                    <ColumnDefinition Width="0.25*" />
+                                    <!--  4 Columns  -->
+                                    <Grid.ColumnDefinitions>
 
-                                    <ColumnDefinition Width="0.25*" />
+                                        <!--  StackIcon Column  -->
+                                        <ColumnDefinition Width="auto" />
 
-                                    <ColumnDefinition Width="0.25*" />
+                                        <!--  Stack Amount Number Column  -->
+                                        <ColumnDefinition Width="auto" />
 
-                                </Grid.ColumnDefinitions>
+                                        <!--  Status Raise Icon Column  -->
+                                        <ColumnDefinition Width="auto" />
 
-                                <Label
+                                        <!--  Status Raise Amount Text Column  -->
+                                        <ColumnDefinition Width="*" />
+
+                                    </Grid.ColumnDefinitions>
+
+                                    <!--  Stack Icon Resource  -->
+                                    <ContentPresenter Grid.Column="0" Margin="10,0,5,0">
+
+                                        <ContentPresenter.Content>
+
+                                            <ContentPresenter ContentTemplate="{StaticResource StackIcon}" />
+
+                                        </ContentPresenter.Content>
+
+                                    </ContentPresenter>
+
+                                    <!--  Stack Amount Number  -->
+                                    <Label
+                                        Grid.Column="1"
+                                        Margin="0,0,20,0"
+                                        Content="{Binding StackedNumber}" />
+
+                                    <!--  LevelUp Icon  -->
+                                    <ContentPresenter Grid.Column="2" Margin="0,0,5,0">
+
+                                        <ContentPresenter.Content>
+
+                                            <ContentPresenter ContentTemplate="{StaticResource LevelUpIcon}" />
+
+                                        </ContentPresenter.Content>
+
+                                    </ContentPresenter>
+
+                                    <!--  Increment Details  -->
+                                    <Label
+                                        Grid.Column="3"
+                                        Margin="0,0,0,0"
+                                        Content="{Binding IncrementAmountDetails}"
+                                        FontSize="15" />
+
+                                </Grid>
+
+                                <Grid Grid.Row="2" Margin="0,6.5,0,0">
+
+                                    <!--  Accept Quest Button  -->
+                                    <Button
+                                        HorizontalAlignment="Center"
+                                        Background="Transparent"
+                                        BorderBrush="Transparent"
+                                        BorderThickness="0"
+                                        Command="{Binding AcceptQuest}"
+                                        Opacity="0.85">
+
+                                        <Button.Style>
+
+                                            <Style TargetType="{x:Type Button}">
+
+                                                <Setter Property="Visibility" Value="Visible" />
+
+                                                <Style.Triggers>
+
+                                                    <DataTrigger Binding="{Binding QuestAcceptedFlag}" Value="1">
+
+                                                        <Setter Property="Visibility" Value="Collapsed" />
+
+                                                    </DataTrigger>
+
+                                                </Style.Triggers>
+
+                                            </Style>
+
+                                        </Button.Style>
+
+                                        <Border
+                                            Padding="6,0,6,0"
+                                            Background="White"
+                                            CornerRadius="15"
+                                            Opacity="0.8">
+                                            <Grid x:Name="AcceptButtonGrid">
+
+                                                <!--  2 Columns  -->
+                                                <Grid.ColumnDefinitions>
+
+                                                    <!--  Accept Text Column  -->
+                                                    <ColumnDefinition Width="auto" />
+
+                                                    <!--  Accept Icon Column  -->
+                                                    <ColumnDefinition Width="auto" />
+
+                                                </Grid.ColumnDefinitions>
+
+                                                <!--  Accept Button Text  -->
+                                                <Label
+                                                    Grid.Column="0"
+                                                    Content="{Binding AcceptButtonLabel}"
+                                                    FontSize="15" />
+
+                                                <!--  Accept button Icon  -->
+                                                <ContentPresenter Grid.Column="1">
+
+                                                    <ContentPresenter.Content>
+
+                                                        <ContentPresenter ContentTemplate="{StaticResource AcceptIcon}" />
+
+                                                    </ContentPresenter.Content>
+
+                                                </ContentPresenter>
+
+                                            </Grid>
+                                        </Border>
+
+
+                                    </Button>
+
+                                    <!--  Decline and Submit Button Grid  -->
+                                    <Grid>
+
+                                        <Grid.ColumnDefinitions>
+
+                                            <ColumnDefinition Width="0.5*" />
+
+                                            <ColumnDefinition Width="0.5*" />
+
+                                        </Grid.ColumnDefinitions>
+
+
+                                        <Button
+                                            Grid.Column="0"
+                                            Margin="0,0,5,0"
+                                            HorizontalAlignment="Center"
+                                            Background="Transparent"
+                                            BorderBrush="Transparent"
+                                            BorderThickness="0"
+                                            Command="{Binding DeclineQuest}"
+                                            Opacity="0.85">
+
+                                            <Button.Style>
+
+                                                <Style TargetType="{x:Type Button}">
+
+                                                    <Setter Property="Visibility" Value="Collapsed" />
+
+                                                    <Style.Triggers>
+
+                                                        <DataTrigger Binding="{Binding QuestAcceptedFlag}" Value="1">
+
+                                                            <Setter Property="Visibility" Value="Visible" />
+
+                                                        </DataTrigger>
+
+                                                    </Style.Triggers>
+
+                                                </Style>
+
+                                            </Button.Style>
+
+                                            <Border
+                                                Padding="6,0,6,0"
+                                                Background="LightCoral"
+                                                CornerRadius="15">
+
+                                                <Grid x:Name="DeclineButtonGrid">
+
+                                                    <!--  2 Columns  -->
+                                                    <Grid.ColumnDefinitions>
+
+                                                        <!--  Decline Text Column  -->
+                                                        <ColumnDefinition Width="auto" />
+
+                                                        <!--  Decline Icon Column  -->
+                                                        <ColumnDefinition Width="auto" />
+
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <!--  Decline Button Text  -->
+                                                    <Label
+                                                        Grid.Column="0"
+                                                        Content="{Binding DeclineButtonLabel}"
+                                                        FontSize="15" />
+
+                                                    <!--  Decline button Icon  -->
+                                                    <ContentPresenter Grid.Column="1">
+
+                                                        <ContentPresenter.Content>
+
+                                                            <ContentPresenter ContentTemplate="{StaticResource DeclineIcon}" />
+
+                                                        </ContentPresenter.Content>
+
+                                                    </ContentPresenter>
+
+                                                </Grid>
+
+                                            </Border>
+
+                                        </Button>
+
+                                        <Button
+                                            Grid.Column="1"
+                                            Margin="5,0,0,0"
+                                            HorizontalAlignment="Center"
+                                            Background="Transparent"
+                                            BorderBrush="Transparent"
+                                            BorderThickness="0"
+                                            Command="{Binding SubmitQuest}"
+                                            Opacity="0.85">
+
+                                            <Button.Style>
+
+                                                <Style TargetType="{x:Type Button}">
+
+                                                    <Setter Property="Visibility" Value="Collapsed" />
+
+                                                    <Style.Triggers>
+
+                                                        <DataTrigger Binding="{Binding QuestAcceptedFlag}" Value="1">
+
+                                                            <Setter Property="Visibility" Value="Visible" />
+
+                                                        </DataTrigger>
+
+                                                    </Style.Triggers>
+
+                                                </Style>
+
+                                            </Button.Style>
+
+                                            <Border
+                                                Padding="6,0,6,0"
+                                                Background="LightGreen"
+                                                CornerRadius="15">
+
+                                                <Grid x:Name="SubmitButtonGrid">
+
+                                                    <!--  2 Columns  -->
+                                                    <Grid.ColumnDefinitions>
+
+                                                        <!--  Submit Text Column  -->
+                                                        <ColumnDefinition Width="auto" />
+
+                                                        <!--  Submit Icon Column  -->
+                                                        <ColumnDefinition Width="auto" />
+
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <!--  Submit Button Text  -->
+                                                    <Label
+                                                        Grid.Column="0"
+                                                        Content="{Binding SubmitButtonLabel}"
+                                                        FontSize="15" />
+
+                                                    <!--  Submit button Icon  -->
+                                                    <ContentPresenter Grid.Column="1">
+
+                                                        <ContentPresenter.Content>
+
+                                                            <ContentPresenter ContentTemplate="{StaticResource SubmitIcon}" />
+
+                                                        </ContentPresenter.Content>
+
+                                                    </ContentPresenter>
+
+                                                </Grid>
+
+                                            </Border>
+
+                                        </Button>
+
+                                    </Grid>
+
+                                </Grid>
+
+                            </Grid>
+
+                        </Grid>
+                    </Border>
+
+                </DataTemplate>
+
+            </ListView.ItemTemplate>
+
+        </ListView>
+
+        <Grid x:Name="OtherDetailsGrid" Grid.Column="1" />
+
+    </Grid>
+
+</UserControl>
+
+<!--<Grid x:Name="QuestListViewItem_1">
+
+    <Grid.ColumnDefinitions>
+
+        <ColumnDefinition Width="*" />
+
+        <ColumnDefinition Width="*" />
+
+        <ColumnDefinition Width="*" />
+
+    </Grid.ColumnDefinitions>
+
+    <Border BorderBrush="red" BorderThickness="1">
+
+        <Grid Grid.Column="0">
+
+            <Grid.RowDefinitions>
+
+                <RowDefinition Height="0.3*" />
+
+                <RowDefinition Height="0.3*" />
+
+                <RowDefinition Height="0.3*" />
+
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+
+                <ColumnDefinition Width="0.25*" />
+
+                <ColumnDefinition Width="0.25*" />
+
+                <ColumnDefinition Width="0.25*" />
+
+                <ColumnDefinition Width="0.25*" />
+
+            </Grid.ColumnDefinitions>
+
+            <Label
                                     x:Name="questName"
                                     Grid.Row="0"
                                     Grid.Column="0"
                                     Grid.ColumnSpan="2"
                                     Content="{Binding QuestDescription}" />
 
-                                <Image
+            <Image
                                     x:Name="LevelUpIcon"
                                     Grid.Row="0"
                                     Grid.RowSpan="2"
                                     Grid.Column="2"
                                     Source="{Binding ImagePath}" />
 
-                                <Label
+            <Label
                                     x:Name="incrementAmount"
                                     Grid.Row="0"
                                     Grid.Column="3"
                                     Content="{Binding IncrementAmount}" />
-                                <Label
+            <Label
                                     x:Name="incrementStatType"
                                     Grid.Row="1"
                                     Grid.Column="3"
                                     Content="{Binding IncrementStatType}" />
 
-                                <Label
+            <Label
                                     x:Name="stackedLabel"
                                     Grid.Row="2"
                                     Grid.Column="0"
                                     Content="{Binding StackedLabel}" />
 
-                                <TextBlock
+            <TextBlock
                                     x:Name="stackedNumber"
                                     Grid.Row="2"
                                     Grid.Column="1"
@@ -112,43 +466,33 @@
 
 
 
-                                <Button
+            <Button
                                     Grid.Row="2"
                                     Grid.Column="3"
                                     Background="Transparent"
                                     BorderThickness="0"
                                     Command="{Binding}">
-                                    <ContentPresenter>
+                <ContentPresenter>
 
-                                        <ContentPresenter.Content>
-                                            <Grid Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type ContentPresenter}}}">
+                    <ContentPresenter.Content>
+                        <Grid Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type ContentPresenter}}}">
 
-                                                <ContentPresenter
+                            <ContentPresenter
                                                     MaxWidth="70"
                                                     MaxHeight="70"
                                                     HorizontalAlignment="Center"
                                                     ContentTemplate="{StaticResource PlusIcon}" />
 
-                                            </Grid>
+                        </Grid>
 
 
 
-                                        </ContentPresenter.Content>
+                    </ContentPresenter.Content>
 
-                                    </ContentPresenter>
-                                </Button>
-                            </Grid>
+                </ContentPresenter>
+            </Button>
+        </Grid>
 
-                        </Border>
+    </Border>
 
-                    </Grid>
-
-                </DataTemplate>
-
-            </ListView.ItemTemplate>
-
-        </ListView>
-
-    </Grid>
-
-</UserControl>
+</Grid>-->

@@ -1,13 +1,28 @@
-﻿using System;
+﻿using DataModelLayer.DataModels;
+using HumanPlayerStatusApp.Commands;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace HumanPlayerStatusApp.ViewModel
 {
     public class QuestListItemViewModel:ViewModelBase
     {
+        public ICommand? AcceptQuest { get; set; }
+
+        public ICommand? DeclineQuest { get; set; }
+
+        public ICommand? SubmitQuest { get; set; }
+
+        public string? AcceptButtonLabel { get; set; }
+
+        public string? DeclineButtonLabel { get; set; }
+
+        public string? SubmitButtonLabel { get; set; }
+
         private string? questDescription;
 
         public string? QuestDescription
@@ -20,51 +35,15 @@ namespace HumanPlayerStatusApp.ViewModel
             }
         }
 
-        private string? imagePath;
+        private string? incrementAmountDetails;
 
-        public string? ImagePath
+        public string? IncrementAmountDetails
         {
-            get { return imagePath; }
+            get { return incrementAmountDetails; }
             set 
-            { 
-                imagePath = value;
-                OnPropertyChanged(nameof(ImagePath));
-            }
-        }
-
-        private double incrementAmount;
-
-        public double IncrementAmount
-        {
-            get { return incrementAmount; }
-            set 
-            { 
-                incrementAmount = value;
-                OnPropertyChanged(nameof(IncrementAmount));
-            }
-        }
-
-        private string? incrementStatType;
-
-        public string? IncrementStatType
-        {
-            get { return incrementStatType; }
-            set 
-            { 
-                incrementStatType = value;
-                OnPropertyChanged(nameof(IncrementStatType));
-            }
-        }
-
-        private string? stackedLabel;
-
-        public string? StackedLabel
-        {
-            get { return stackedLabel; }
-            set 
-            { 
-                stackedLabel = value;
-                OnPropertyChanged(nameof(StackedLabel));
+            {
+                incrementAmountDetails = value;
+                OnPropertyChanged(nameof(IncrementAmountDetails));
             }
         }
 
@@ -80,6 +59,26 @@ namespace HumanPlayerStatusApp.ViewModel
             }
         }
 
-        
+        private int questAcceptedFlag;
+
+        public int QuestAcceptedFlag
+        {
+            get { return questAcceptedFlag; }
+            set 
+            { 
+                questAcceptedFlag = value;
+                OnPropertyChanged(nameof(QuestAcceptedFlag));
+            }
+        }
+
+        public QuestListItemViewModel(QuestModel questModel)
+        {
+            AcceptQuest = new QuestAcceptingCommand(questModel, 1, this);
+
+            DeclineQuest = new QuestDecliningCommand(questModel,0,this);
+
+            SubmitQuest = new QuestSubmittionCommand(questModel, 0, this);
+        }
+
     }
 }
