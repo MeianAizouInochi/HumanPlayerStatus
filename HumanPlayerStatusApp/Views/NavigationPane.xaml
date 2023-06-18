@@ -30,6 +30,8 @@
 
             <RowDefinition Height="auto" />
 
+            <RowDefinition Height="auto" />
+
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -93,6 +95,35 @@
             </ContentPresenter.Content>
 
         </ContentPresenter>
+
+        <ContentPresenter
+            Grid.Row="2"
+            Grid.Column="0"
+            Margin="0,5,0,5">
+
+            <ContentPresenter.Content>
+
+                <Button
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Command="{Binding navigationMenuItemsList.NavigateToQuestCreator}">
+
+                    <Grid Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Button}}}">
+
+                        <ContentPresenter
+                            MaxWidth="70"
+                            MaxHeight="70"
+                            HorizontalAlignment="Center"
+                            ContentTemplate="{StaticResource QuestCreatorIcon}" />
+
+                    </Grid>
+
+                </Button>
+
+            </ContentPresenter.Content>
+
+        </ContentPresenter>
+
     </Grid>
 
 </UserControl>

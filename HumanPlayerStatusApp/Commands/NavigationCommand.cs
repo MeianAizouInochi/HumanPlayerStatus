@@ -36,6 +36,12 @@ namespace HumanPlayerStatusApp.Commands
                         store.CurrentViewModel = new QuestsViewModel();
                     }
                     break;
+
+                case 2: 
+                    {
+                        store.CurrentViewModel = new QuestCreatorViewModel();
+                    }
+                    break;
                 default: 
                     {
                         store.CurrentViewModel = new DashboardViewModel();

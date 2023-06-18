@@ -130,6 +130,12 @@
 
                             </DataTemplate>
 
+                            <DataTemplate DataType="{x:Type viewmodels:QuestCreatorViewModel}">
+
+                                <views:QuestCreatorView />
+
+                            </DataTemplate>
+
                         </ContentControl.Resources>
 
                     </ContentControl>

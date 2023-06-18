@@ -38,7 +38,8 @@ namespace HumanPlayerStatusApp.ViewModel
 
             navigationMenuItemsList = new NavigationMenuItemsList() {
                 NavigateToDashboardCommand = new NavigationCommand(navigationStore,0),
-                NavigateToQuestCommand = new NavigationCommand(navigationStore,1)
+                NavigateToQuestCommand = new NavigationCommand(navigationStore,1),
+                NavigateToQuestCreator = new NavigationCommand(navigationStore,2)
             };
 
             CloseApp = new CloseApplicationCommand();
