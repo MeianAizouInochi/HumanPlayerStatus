@@ -2,11 +2,13 @@
 using DataModelLayer.DataModels;
 using HumanPlayerStatusApp.Store;
 using HumanPlayerStatusApp.ViewModel;
+using Microsoft.Azure.Cosmos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace HumanPlayerStatusApp.Commands
 {
@@ -37,84 +39,96 @@ namespace HumanPlayerStatusApp.Commands
         //TODO: Create a Transaction here, or call a transaction from azuredbcontext here.
         private async Task DbSubmitQuest()
         {
-            AzureDBContext azureDBContext = new AzureDBContext();
-
-            _model.QuestAcceptedFlag = _questAcceptedFlag;
-
-            _model.StackedNumber = _questListItemViewModel.StackedNumber + 1;
-
-            await azureDBContext.UpdateQuest(_model);
-
-            PlayerStats _HumanPlayer = await azureDBContext.GetPlayerStats(IDStore.StatsUniqueId, IDStore.StatsPartitionKey);
-
-            switch (_model.IncrementStatType)
+            try 
             {
-                case "STR":
-                    {
-                        _HumanPlayer.STR += _model.IncrementAmount;
+                AzureDBContext azureDBContext = new AzureDBContext();
 
-                        break;
-                    }
-                case "INT":
-                    {
-                        _HumanPlayer.INT += _model.IncrementAmount;
+                _model.QuestAcceptedFlag = _questAcceptedFlag;
 
-                        break;
-                    }
-                case "AGI":
-                    {
-                        _HumanPlayer.AGI += _model.IncrementAmount;
+                _model.StackedNumber = _questListItemViewModel.StackedNumber + 1;
 
-                        break;
-                    }
-                case "COMM":
-                    {
-                        _HumanPlayer.COMM += _model.IncrementAmount;
+                await azureDBContext.UpdateQuest(_model);
 
-                        break;
-                    }
-                case "MENSTB":
-                    {
-                        _HumanPlayer.MENSTB += _model.IncrementAmount;
+                PlayerStats _HumanPlayer = await azureDBContext.GetPlayerStats(IDStore.StatsUniqueId, IDStore.StatsPartitionKey);
 
-                        break;
-                    }
-                case "CRT":
-                    {
-                        _HumanPlayer.CRT += _model.IncrementAmount;
+                switch (_model.IncrementStatType)
+                {
+                    case "STR":
+                        {
+                            _HumanPlayer.STR += _model.IncrementAmount;
 
-                        break;
-                    }
-                case "HP":
-                    {
-                        _HumanPlayer.HP += _model.IncrementAmount;
+                            break;
+                        }
+                    case "INT":
+                        {
+                            _HumanPlayer.INT += _model.IncrementAmount;
 
-                        break;
-                    }
-                case "HYG":
-                    {
-                        _HumanPlayer.HYG += _model.IncrementAmount;
+                            break;
+                        }
+                    case "AGI":
+                        {
+                            _HumanPlayer.AGI += _model.IncrementAmount;
 
-                        break;
-                    }
+                            break;
+                        }
+                    case "COMM":
+                        {
+                            _HumanPlayer.COMM += _model.IncrementAmount;
+
+                            break;
+                        }
+                    case "MENSTB":
+                        {
+                            _HumanPlayer.MENSTB += _model.IncrementAmount;
+
+                            break;
+                        }
+                    case "CRT":
+                        {
+                            _HumanPlayer.CRT += _model.IncrementAmount;
+
+                            break;
+                        }
+                    case "HP":
+                        {
+                            _HumanPlayer.HP += _model.IncrementAmount;
+
+                            break;
+                        }
+                    case "HYG":
+                        {
+                            _HumanPlayer.HYG += _model.IncrementAmount;
+
+                            break;
+                        }
+                }
+
+                _HumanPlayer.HumanPlayerExp += (long)(_model.IncrementAmount * 100);
+
+                if (_HumanPlayer.HumanPlayerExp >= _HumanPlayer.HumanPlayerLevelMaxExp)
+                {
+                    _HumanPlayer.HumanPlayerExp = _HumanPlayer.HumanPlayerExp - _HumanPlayer.HumanPlayerLevelMaxExp;
+
+                    _HumanPlayer.HumanPlayerLevel += 1;
+
+                    _HumanPlayer.HumanPlayerLevelMaxExp += _HumanPlayer.HumanPlayerLevel >= 25 ? (_HumanPlayer.HumanPlayerLevelMaxExp / 2) : (_HumanPlayer.HumanPlayerLevelMaxExp / 4);
+                }
+
+                await azureDBContext.UploadPlayerStats(_HumanPlayer);
+
+                _questListItemViewModel.QuestAcceptedFlag = _questAcceptedFlag;
+
+                _questListItemViewModel.StackedNumber = _model.StackedNumber;
+
             }
-
-            _HumanPlayer.HumanPlayerExp += (long)(_model.IncrementAmount * 100);
-
-            if (_HumanPlayer.HumanPlayerExp >= _HumanPlayer.HumanPlayerLevelMaxExp)
+            catch (CosmosException CosmosEx) 
             {
-                _HumanPlayer.HumanPlayerExp = _HumanPlayer.HumanPlayerExp - _HumanPlayer.HumanPlayerLevelMaxExp;
-
-                _HumanPlayer.HumanPlayerLevel += 1;
-
-                _HumanPlayer.HumanPlayerLevelMaxExp += _HumanPlayer.HumanPlayerLevel >= 25 ? (_HumanPlayer.HumanPlayerLevelMaxExp / 2) : (_HumanPlayer.HumanPlayerLevelMaxExp / 4);
+                MessageBox.Show(CosmosEx.Message, "Some Major Shit happened!");
+            }           
+            catch(Exception ex) 
+            {
+                MessageBox.Show(ex.Message, "Some Major Shit happened!");
             }
-
-            await azureDBContext.UploadPlayerStats(_HumanPlayer);
-
-            _questListItemViewModel.QuestAcceptedFlag = _questAcceptedFlag;
-
-            _questListItemViewModel.StackedNumber = _model.StackedNumber;
         }
     }
 }

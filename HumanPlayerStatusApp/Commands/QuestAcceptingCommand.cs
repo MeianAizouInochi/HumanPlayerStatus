@@ -48,14 +48,31 @@ namespace HumanPlayerStatusApp.Commands
             }
             catch (CosmosException CosmosEx)
             {
-                MessageBox.Show(CosmosEx.Message);
+                MessageBoxResult res =  MessageBox.Show(CosmosEx.Message+"\n Click Ok to Retry or Cancel to Exit Application!","Error",MessageBoxButton.OKCancel);
+
+                if(res == MessageBoxResult.OK) 
+                {
+                    _ = DbAcceptQuest();
+                }
+                else if(res == MessageBoxResult.Cancel) 
+                {
+                    Application.Current.Shutdown();
+                }
             }
             catch (Exception ex) 
             {
-                MessageBox.Show(ex.Message);
+                MessageBoxResult res = MessageBox.Show(ex.Message + "\n Click Ok to Retry or Cancel to Exit Application!", "Error", MessageBoxButton.OKCancel);
+                
+                if(res == MessageBoxResult.OK)
+                {
+                    _ = DbAcceptQuest();
+                }
+                else if (res == MessageBoxResult.Cancel)
+                {
+                    Application.Current.Shutdown();
+                }
             }
-            
-            
+
         }
     }
 }

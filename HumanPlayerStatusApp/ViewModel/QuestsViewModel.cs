@@ -58,11 +58,30 @@ namespace HumanPlayerStatusApp.ViewModel
             }
             catch (CosmosException CosmosEx)
             {
+                MessageBoxResult res = MessageBox.Show(CosmosEx.Message + "\n Click Ok to Retry or Cancel to Exit Application!", "Error", MessageBoxButton.OKCancel);
+
+                if (res == MessageBoxResult.OK)
+                {
+                    _ = MakeHumanPlayerQuestReadAPICall();
+                }
+                else if (res == MessageBoxResult.Cancel)
+                {
+                    Application.Current.Shutdown();
+                }
                 MessageBox.Show(CosmosEx.Message);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBoxResult res = MessageBox.Show(ex.Message + "\n Click Ok to Retry or Cancel to Exit Application!", "Error", MessageBoxButton.OKCancel);
+
+                if (res == MessageBoxResult.OK)
+                {
+                    _ = MakeHumanPlayerQuestReadAPICall();
+                }
+                else if (res == MessageBoxResult.Cancel)
+                {
+                    Application.Current.Shutdown();
+                }
             }
         }
     }

@@ -286,12 +286,30 @@ namespace HumanPlayerStatusApp.ViewModel
             catch(CosmosException CosmosEx) 
             {
                 //TODO: Add a functionality to restart this function.
-                MessageBox.Show(CosmosEx.Message);
+                MessageBoxResult res = MessageBox.Show(CosmosEx.Message + "\n Click Ok to Retry or Cancel to Exit Application!", "Error", MessageBoxButton.OKCancel);
+
+                if (res == MessageBoxResult.OK)
+                {
+                    _ = MakeHumanPlayerStatReadAPICall();
+                }
+                else if (res == MessageBoxResult.Cancel)
+                {
+                    Application.Current.Shutdown();
+                }
             }
             catch (Exception ex) 
             {
                 //TODO: Add a functionality to restart this function.
-                MessageBox.Show(ex.Message);
+                MessageBoxResult res = MessageBox.Show(ex.Message + "\n Click Ok to Retry or Cancel to Exit Application!", "Error", MessageBoxButton.OKCancel);
+
+                if (res == MessageBoxResult.OK)
+                {
+                    _ = MakeHumanPlayerStatReadAPICall();
+                }
+                else if (res == MessageBoxResult.Cancel)
+                {
+                    Application.Current.Shutdown();
+                }
             }
         }
 
