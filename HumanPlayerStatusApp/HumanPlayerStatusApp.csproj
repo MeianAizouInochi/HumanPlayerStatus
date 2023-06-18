@@ -16,4 +16,8 @@
     <ProjectReference Include="..\DataModelLayer\DataModelLayer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ProjectStaticAssets\" />
+  </ItemGroup>
+
 </Project>

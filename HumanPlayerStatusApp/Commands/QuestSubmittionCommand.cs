@@ -34,6 +34,7 @@ namespace HumanPlayerStatusApp.Commands
 
         }
 
+        //TODO: Create a Transaction here, or call a transaction from azuredbcontext here.
         private async Task DbSubmitQuest()
         {
             AzureDBContext azureDBContext = new AzureDBContext();
@@ -44,7 +45,7 @@ namespace HumanPlayerStatusApp.Commands
 
             await azureDBContext.UpdateQuest(_model);
 
-            PlayerStats _HumanPlayer = await azureDBContext.GetPlayerStats(IDStore.UniqueId, IDStore.PartitionKey);
+            PlayerStats _HumanPlayer = await azureDBContext.GetPlayerStats(IDStore.StatsUniqueId, IDStore.StatsPartitionKey);
 
             switch (_model.IncrementStatType)
             {

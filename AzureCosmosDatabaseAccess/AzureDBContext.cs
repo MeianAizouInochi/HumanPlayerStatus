@@ -14,15 +14,11 @@ namespace AzureCosmosDatabaseAccess
     {
         private const string DatabaseId = "HumanPlayerStatusAppDatabase";
 
-        private const string StatusContainerId = "HumanPlayerStatusData";
-
-        private const string QuestContainerId = "HumanPlayerQuestData";
+        private const string HumanPlayerDataContainerId = "HumanPlayerData";
 
         private const string QuestContainer_quest_PartitionKey = "Quest";
 
         private CosmosClient _Client;
-
-        public int ResponseCode { get; set; } = -1;
 
         /// <summary>
         /// The Constructor for the AzureDbContext Class. It initializes the client for Azure Cosmos NoSql DB
@@ -31,8 +27,8 @@ namespace AzureCosmosDatabaseAccess
         {
             //initializing client
             _Client = new(
-                accountEndpoint: "",
-                authKeyOrResourceToken: ""
+                accountEndpoint: "https://rtdb-access-meian.documents.azure.com:443/",
+                authKeyOrResourceToken: "oXwaUYv7jDivR4dmtXuwHfhVvNfjKal5Ou7C256qD0rXoxLyIDI7faOIZCED7RSGDpFaqpK43fMjACDbYKa0HQ=="
                 ) ;
         }
 
@@ -43,58 +39,19 @@ namespace AzureCosmosDatabaseAccess
         /// <param name="playerstats"></param>
         /// <param name="Flag"></param>
         /// <returns></returns>
-        public async Task UploadPlayerStats(PlayerStats playerstats, DataIntegrityFlagStore? Flag = null) 
+        public async Task UploadPlayerStats(PlayerStats playerstats) 
         {
             //initialize Db and container reference.
             Database DB = _Client.GetDatabase(DatabaseId);
 
-            Container container = DB.GetContainer(StatusContainerId);
+            Container container = DB.GetContainer(HumanPlayerDataContainerId);
 
             //Request-POST type
-            try
-            {
-                ItemResponse<PlayerStats> Response = await container.UpsertItemAsync(
+            ItemResponse<PlayerStats> Response = await container.UpsertItemAsync(
                 item: playerstats,
                 partitionKey: new PartitionKey(playerstats.Id)
                 );
-
-                ResponseCode = (int)Response.StatusCode;
-
-                // TODO: Provide Paths for all response codes.
-                switch (ResponseCode)
-                {
-                    case 200:
-                        {
-                            //all went well
-                            break;
-                        }
-                    case 201:
-                        {
-                            //all went well
-                            break;
-                        }
-                    case 204: 
-                        {
-                            break;
-                        }
-                    case 400: 
-                        {
-                            throw new HumanPlayerStatusException((new HumanPlayerStatusExceptionMessages()).BadRequestError);
-                        }
-                    default:
-                        {
-                            //something went wrong
-                            throw new HumanPlayerStatusException((new HumanPlayerStatusExceptionMessages()).UnexpectedError);
-                        }
-                }
-
-            }
-            catch (HumanPlayerStatusException ex)
-            {
-                MessageBox.Show(ex.Message);
-            } 
         }
-
 
 
         /// <summary>
@@ -108,7 +65,7 @@ namespace AzureCosmosDatabaseAccess
             //initialize DB and Container
             Database DB = _Client.GetDatabase(DatabaseId);
 
-            Container container = DB.GetContainer(StatusContainerId);
+            Container container = DB.GetContainer(HumanPlayerDataContainerId);
 
             ItemResponse<PlayerStats> response =  await container.ReadItemAsync<PlayerStats>( 
                 id:_id, 
@@ -117,8 +74,6 @@ namespace AzureCosmosDatabaseAccess
 
             return response.Resource;
         }
-
-
 
 
         /// <summary>
@@ -130,12 +85,12 @@ namespace AzureCosmosDatabaseAccess
             //initialize DB and Container
             Database Db = _Client.GetDatabase(DatabaseId);
 
-            Container container =  Db.GetContainer(QuestContainerId);
+            Container container =  Db.GetContainer(HumanPlayerDataContainerId);
 
             //Creating Query using the QueryDefinition Class.
             var parameterizedQuery = new QueryDefinition
                 (
-                query: "SELECT * FROM HumanPlayerQuestData c WHERE c.Id = @partitionKey"
+                query: "SELECT * FROM HumanPlayerData c WHERE c.Id = @partitionKey"
                 )
                 .WithParameter("@partitionKey", "Quest");
 
@@ -164,57 +119,28 @@ namespace AzureCosmosDatabaseAccess
         }
 
 
-
+        /// <summary>
+        /// This Function Updates the Quest Item in the Container.
+        /// </summary>
+        /// <param name="_Quest"></param>
+        /// <returns></returns>
         public async Task UpdateQuest(QuestModel _Quest) 
         {
             Database DB = _Client.GetDatabase(DatabaseId);
 
-            Container container = DB.GetContainer(QuestContainerId);
+            Container container = DB.GetContainer(HumanPlayerDataContainerId);
 
-            try 
-            {
-                ItemResponse<QuestModel> response = await container.UpsertItemAsync(
-                    item: _Quest,
-                    partitionKey: new PartitionKey(QuestContainer_quest_PartitionKey)
-                    );
-
-                int ResponseCode = (int)response.StatusCode;
-
-                // TODO: Provide Paths for all response codes.
-                switch (ResponseCode)
-                {
-                    case 200:
-                        {
-                            //all went well
-                            break;
-                        }
-                    case 201:
-                        {
-                            //all went well
-                            break;
-                        }
-                    case 204:
-                        {
-                            break;
-                        }
-                    case 400:
-                        {
-                            throw new HumanPlayerStatusException((new HumanPlayerStatusExceptionMessages()).BadRequestError);
-                        }
-                    default:
-                        {
-                            //something went wrong
-                            throw new HumanPlayerStatusException((new HumanPlayerStatusExceptionMessages()).UnexpectedError);
-                        }
-                }
-
-            }
-            catch (Exception ex) 
-            {
-
-            }
-
+            ItemResponse<QuestModel> response = await container.UpsertItemAsync(
+                     item: _Quest,
+                     partitionKey: new PartitionKey(QuestContainer_quest_PartitionKey)
+                     );
 
         }
+
+
+        //public async Task TransactBatchUpdate_Quest_Stats() 
+        //{
+        //    PartitionKey partitionKey = new PartitionKey();
+        //}
     }
 }

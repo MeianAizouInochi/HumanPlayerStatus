@@ -1,12 +1,14 @@
 ﻿using AzureCosmosDatabaseAccess;
 using DataModelLayer.DataModels;
 using HumanPlayerStatusApp.Commands;
+using Microsoft.Azure.Cosmos;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace HumanPlayerStatusApp.ViewModel
 {
@@ -33,24 +35,35 @@ namespace HumanPlayerStatusApp.ViewModel
         {
             QuestList = new ObservableCollection<QuestListItemViewModel>();
 
-            AzureDBContext _dbContext = new AzureDBContext();
-
-            List<QuestModel> Quests = await _dbContext.GetItemsInQuestContainer();
-
-            foreach (QuestModel Q in Quests)
+            //TODO: Create Functionality to Rerun this function on failure.
+            try
             {
-                QuestList.Add(new QuestListItemViewModel(Q) 
-                { 
-                    QuestDescription = Q.QuestDescription,
-                    IncrementAmountDetails = Q.IncrementAmount.ToString() + " " + Q.IncrementStatType,
-                    StackedNumber = Q.StackedNumber,
-                    QuestAcceptedFlag = Q.QuestAcceptedFlag,
-                    AcceptButtonLabel = "Accept Quest",
-                    DeclineButtonLabel = "Decline Quest",
-                    SubmitButtonLabel = "Submit Quest"
-                });
-            }
+                AzureDBContext _dbContext = new AzureDBContext();
 
+                List<QuestModel> Quests = await _dbContext.GetItemsInQuestContainer();
+
+                foreach (QuestModel Q in Quests)
+                {
+                    QuestList.Add(new QuestListItemViewModel(Q)
+                    {
+                        QuestDescription = Q.QuestDescription,
+                        IncrementAmountDetails = Q.IncrementAmount.ToString() + " " + Q.IncrementStatType,
+                        StackedNumber = Q.StackedNumber,
+                        QuestAcceptedFlag = Q.QuestAcceptedFlag,
+                        AcceptButtonLabel = "Accept Quest",
+                        DeclineButtonLabel = "Decline Quest",
+                        SubmitButtonLabel = "Submit Quest"
+                    });
+                }
+            }
+            catch (CosmosException CosmosEx)
+            {
+                MessageBox.Show(CosmosEx.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

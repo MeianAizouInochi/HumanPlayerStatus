@@ -1,11 +1,13 @@
 ﻿using AzureCosmosDatabaseAccess;
 using DataModelLayer.DataModels;
 using HumanPlayerStatusApp.ViewModel;
+using Microsoft.Azure.Cosmos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace HumanPlayerStatusApp.Commands
 {
@@ -31,15 +33,28 @@ namespace HumanPlayerStatusApp.Commands
             _ = DbDeclineQuest();
         }
 
+        //TODO: Create functionality to retry executing the function.
         private async Task DbDeclineQuest()
         {
-            AzureDBContext azureDBContext = new AzureDBContext();
+            try
+            {
+                AzureDBContext azureDBContext = new AzureDBContext();
 
-            questModel.QuestAcceptedFlag = questAcceptedFlag;
+                questModel.QuestAcceptedFlag = questAcceptedFlag;
 
-            await azureDBContext.UpdateQuest(questModel);
+                await azureDBContext.UpdateQuest(questModel);
 
-            questListItemViewModel.QuestAcceptedFlag = questAcceptedFlag;
+                questListItemViewModel.QuestAcceptedFlag = questAcceptedFlag;
+            }
+            catch (CosmosException Cosmosex)
+            {
+                MessageBox.Show(Cosmosex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
+
     }
 }

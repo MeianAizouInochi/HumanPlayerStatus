@@ -36,8 +36,6 @@ namespace HumanPlayerStatusApp.ViewModel
 
             this.navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
 
-            
-
             navigationMenuItemsList = new NavigationMenuItemsList() {
                 NavigateToDashboardCommand = new NavigationCommand(navigationStore,0),
                 NavigateToQuestCommand = new NavigationCommand(navigationStore,1)

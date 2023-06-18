@@ -13,6 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
+using System.Windows;
 
 namespace HumanPlayerStatusApp.ViewModel
 {
@@ -252,7 +253,8 @@ namespace HumanPlayerStatusApp.ViewModel
 
             _ = MakeHumanPlayerStatReadAPICall();
 
-            AngleAxes = new PolarAxis[] { new PolarAxis {
+            AngleAxes = new PolarAxis[] { 
+                new PolarAxis {
                 LabelsRotation = LiveCharts.TangentAngle,
                 Labels = new string[]{ "STR","AGI","INT","COMM","MENSTB","CRT","HP","HYG" }
             } 
@@ -261,23 +263,36 @@ namespace HumanPlayerStatusApp.ViewModel
 
         private async Task MakeHumanPlayerStatReadAPICall() 
         {
-            PlayerStats _GetPlayerStats = await dBContext.GetPlayerStats(IDStore.UniqueId, IDStore.PartitionKey);
+            try
+            {
+                PlayerStats _GetPlayerStats = await dBContext.GetPlayerStats(IDStore.StatsUniqueId, IDStore.StatsPartitionKey);
 
-            HumanPlayerExp = _GetPlayerStats.HumanPlayerExp;
-            HumanPlayerLevelMaxExp = _GetPlayerStats.HumanPlayerLevelMaxExp;
-            HumanPlayerLevel = _GetPlayerStats.HumanPlayerLevel;
-            Str = _GetPlayerStats.STR;
-            Agi = _GetPlayerStats.AGI;
-            Int = _GetPlayerStats.INT;
-            Comm = _GetPlayerStats.COMM;
-            MenStb = _GetPlayerStats.MENSTB;
-            Crt = _GetPlayerStats.CRT;
-            Hp = _GetPlayerStats.HP;
-            Hyg = _GetPlayerStats.HYG;
+                HumanPlayerExp = _GetPlayerStats.HumanPlayerExp;
+                HumanPlayerLevelMaxExp = _GetPlayerStats.HumanPlayerLevelMaxExp;
+                HumanPlayerLevel = _GetPlayerStats.HumanPlayerLevel;
+                Str = _GetPlayerStats.STR;
+                Agi = _GetPlayerStats.AGI;
+                Int = _GetPlayerStats.INT;
+                Comm = _GetPlayerStats.COMM;
+                MenStb = _GetPlayerStats.MENSTB;
+                Crt = _GetPlayerStats.CRT;
+                Hp = _GetPlayerStats.HP;
+                Hyg = _GetPlayerStats.HYG;
 
-            var TempExpPercent = (HumanPlayerExp * 100) / HumanPlayerLevelMaxExp;
+                var TempExpPercent = (HumanPlayerExp * 100) / HumanPlayerLevelMaxExp;
 
-            HumanPlayerExpPercent = TempExpPercent.ToString() + "%";
+                HumanPlayerExpPercent = TempExpPercent.ToString() + "%";
+            }
+            catch(CosmosException CosmosEx) 
+            {
+                //TODO: Add a functionality to restart this function.
+                MessageBox.Show(CosmosEx.Message);
+            }
+            catch (Exception ex) 
+            {
+                //TODO: Add a functionality to restart this function.
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void UpdateGraph()

@@ -1,11 +1,13 @@
 ﻿using AzureCosmosDatabaseAccess;
 using DataModelLayer.DataModels;
 using HumanPlayerStatusApp.ViewModel;
+using Microsoft.Azure.Cosmos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace HumanPlayerStatusApp.Commands
 {
@@ -26,21 +28,33 @@ namespace HumanPlayerStatusApp.Commands
             _questListItemViewModel = questListItemViewModel;
         }
 
-        //TODO: Handle Exceptions here
         public override void Execute(object? parameter)
         {
             _ = DbAcceptQuest();
         }
 
+        //TODO: Create a functionality to retry execution.
         private async Task DbAcceptQuest() 
         {
-            AzureDBContext DBContext = new AzureDBContext();
+            try
+            {
+                AzureDBContext DBContext = new AzureDBContext();
 
-            _model.QuestAcceptedFlag = _questAcceptedFlag;
+                _model.QuestAcceptedFlag = _questAcceptedFlag;
 
-            await DBContext.UpdateQuest(_model);
+                await DBContext.UpdateQuest(_model);
 
-            _questListItemViewModel.QuestAcceptedFlag = _questAcceptedFlag;
+                _questListItemViewModel.QuestAcceptedFlag = _questAcceptedFlag;
+            }
+            catch (CosmosException CosmosEx)
+            {
+                MessageBox.Show(CosmosEx.Message);
+            }
+            catch (Exception ex) 
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
             
         }
     }

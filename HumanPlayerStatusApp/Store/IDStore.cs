@@ -11,8 +11,12 @@ namespace HumanPlayerStatusApp.Store
 {
     public class IDStore
     {
-        public static readonly string UniqueId = "HumanPlayerStatusData|Meian";
+        public static readonly string HumanPlayerDataContainerID = "HumanPlayerData";
 
-        public static readonly string PartitionKey = "Meian";
+        public static readonly string StatsUniqueId = "HumanPlayerData|Meian|Stats";
+
+        public static readonly string StatsPartitionKey = "Meian";
+
+        public static readonly string QuestPartitionKey = "Quest";
     }
 }
