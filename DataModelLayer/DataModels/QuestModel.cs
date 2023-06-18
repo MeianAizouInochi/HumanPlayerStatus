@@ -16,7 +16,7 @@ namespace DataModelLayer.DataModels
         
         public string? IncrementStatType { get; set; }
         
-        public double IncrementAmount { get; set; }
+        public float IncrementAmount { get; set; }
         
         public int StackedNumber { get; set; }
 

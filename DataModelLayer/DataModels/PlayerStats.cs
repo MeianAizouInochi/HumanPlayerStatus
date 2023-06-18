@@ -14,20 +14,20 @@ namespace DataModelLayer.DataModels
 
         public long HumanPlayerLevelMaxExp { get; set; }
 
-        public double STR { get; set; }
+        public float STR { get; set; }
 
-        public double AGI { get; set; }
-
-        public double INT { get; set; }
-
-        public double COMM { get; set; }
-
-        public double MENSTB { get; set; }
-
-        public double CRT { get; set; }
-
-        public double HP { get; set; }
-
-        public double HYG { get; set; }
+        public float AGI { get; set; }
+               
+        public float INT { get; set; }
+               
+        public float COMM { get; set; }
+               
+        public float MENSTB { get; set; }
+               
+        public float CRT { get; set; }
+               
+        public float HP { get; set; }
+               
+        public float HYG { get; set; }
     }
 }

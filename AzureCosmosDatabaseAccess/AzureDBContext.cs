@@ -27,8 +27,8 @@ namespace AzureCosmosDatabaseAccess
         {
             //initializing client
             _Client = new(
-                accountEndpoint: "https://rtdb-access-meian.documents.azure.com:443/",
-                authKeyOrResourceToken: "oXwaUYv7jDivR4dmtXuwHfhVvNfjKal5Ou7C256qD0rXoxLyIDI7faOIZCED7RSGDpFaqpK43fMjACDbYKa0HQ=="
+                accountEndpoint: "",
+                authKeyOrResourceToken: ""
                 ) ;
         }
 
