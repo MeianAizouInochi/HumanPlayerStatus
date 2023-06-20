@@ -14,9 +14,9 @@ namespace HumanPlayerStatusApp.ViewModel
 {
     public class QuestsViewModel:ViewModelBase
     {
-		private ObservableCollection<QuestListItemViewModel> questList;
+		private ObservableCollection<QuestListItemViewModel>? questList;
 
-		public ObservableCollection<QuestListItemViewModel> QuestList
+		public ObservableCollection<QuestListItemViewModel>? QuestList
 		{
 			get { return questList; }
 			set 

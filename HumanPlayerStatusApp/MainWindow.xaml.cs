@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LiveChartsCore.Kernel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,44 @@ namespace HumanPlayerStatusApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        private bool isDragging = false;
+
+        private Point startPoint;
+
         public MainWindow()
         {
             InitializeComponent();
         }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                isDragging = true;
+                startPoint = e.GetPosition(this);
+            }
+        }
+
+        private void Window_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (isDragging)
+            {
+                Point currentPosition = e.GetPosition(this);
+                double deltaX = currentPosition.X - startPoint.X;
+                double deltaY = currentPosition.Y - startPoint.Y;
+
+                this.Left += deltaX;
+                this.Top += deltaY;
+            }
+        }
+
+        private void Window_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                isDragging = false;
+            }
+        }
     }
 }
+

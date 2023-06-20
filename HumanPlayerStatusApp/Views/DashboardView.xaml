@@ -135,158 +135,298 @@
 
             </Grid.ColumnDefinitions>
 
-            <Border BorderBrush="White" BorderThickness="0,0,1,0">
+            <Border BorderBrush="white" BorderThickness="0,0,1,0">
 
                 <Grid
                     x:Name="Child_of_ChildGrid_2_StatsGrid"
                     Grid.Column="0"
-                    HorizontalAlignment="Center">
+                    Margin="0,15,0,0">
 
+                    <!--  2 Rows  -->
                     <Grid.RowDefinitions>
 
+                        <!--  Properties  -->
                         <RowDefinition Height="auto" />
 
-                        <RowDefinition Height="auto" />
-
-                        <RowDefinition Height="auto" />
-
-                        <RowDefinition Height="auto" />
-
-                        <RowDefinition Height="auto" />
-
-                        <RowDefinition Height="auto" />
-
-                        <RowDefinition Height="auto" />
-
-                        <RowDefinition Height="auto" />
+                        <!--  Characteristics  -->
+                        <RowDefinition Height="*" />
 
                     </Grid.RowDefinitions>
 
-                    <Grid.ColumnDefinitions>
+                    <Border BorderBrush="White" BorderThickness="0,0,0,1">
 
-                        <ColumnDefinition Width="auto" />
+                        <Grid
+                            x:Name="PropertyGrid"
+                            Grid.Row="0"
+                            HorizontalAlignment="Center">
 
-                        <ColumnDefinition Width="*" />
+                            <!--  8 Rows  -->
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                            </Grid.RowDefinitions>
 
-                    </Grid.ColumnDefinitions>
+                            <!--  2 Columns  -->
+                            <Grid.ColumnDefinitions>
 
-                    <Label
-                        Grid.Row="0"
-                        Grid.Column="0"
-                        VerticalAlignment="Center"
-                        Content="{Binding Strength}"
-                        FontSize="20" />
+                                <!--  PropertyName Column  -->
+                                <ColumnDefinition Width="auto" />
 
-                    <Label
-                        Grid.Row="1"
-                        Grid.Column="0"
-                        VerticalAlignment="Center"
-                        Content="{Binding Agility}"
-                        FontSize="20" />
+                                <!--  PropertyValue Column  -->
+                                <ColumnDefinition Width="*" />
 
-                    <Label
-                        Grid.Row="2"
-                        Grid.Column="0"
-                        VerticalAlignment="Center"
-                        Content="{Binding Intelligence}"
-                        FontSize="20" />
+                            </Grid.ColumnDefinitions>
 
-                    <Label
-                        Grid.Row="3"
-                        Grid.Column="0"
-                        VerticalAlignment="Center"
-                        Content="{Binding Communication}"
-                        FontSize="20" />
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Content="{Binding Strength}"
+                                FontFamily="Courier New"
+                                FontSize="23"
+                                FontWeight="Normal" />
 
-                    <Label
-                        Grid.Row="4"
-                        Grid.Column="0"
-                        VerticalAlignment="Center"
-                        Content="{Binding MentalStability}"
-                        FontSize="20" />
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Content="{Binding Agility}"
+                                FontFamily="Courier New"
+                                FontSize="23"
+                                FontWeight="Normal" />
 
-                    <Label
-                        Grid.Row="5"
-                        Grid.Column="0"
-                        VerticalAlignment="Center"
-                        Content="{Binding Creativity}"
-                        FontSize="20" />
+                            <Label
+                                Grid.Row="2"
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Content="{Binding Intelligence}"
+                                FontFamily="Courier New"
+                                FontSize="23"
+                                FontWeight="Normal" />
 
-                    <Label
-                        Grid.Row="6"
-                        Grid.Column="0"
-                        VerticalAlignment="Center"
-                        Content="{Binding HealthPoints}"
-                        FontSize="20" />
+                            <Label
+                                Grid.Row="3"
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Content="{Binding Communication}"
+                                FontFamily="Courier New"
+                                FontSize="23"
+                                FontWeight="Normal" />
 
-                    <Label
-                        Grid.Row="7"
-                        Grid.Column="0"
-                        VerticalAlignment="Center"
-                        Content="{Binding Hygine}"
-                        FontSize="20" />
+                            <Label
+                                Grid.Row="4"
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Content="{Binding MentalStability}"
+                                FontFamily="Courier New"
+                                FontSize="23"
+                                FontWeight="Normal" />
 
-                    <TextBlock
-                        Grid.Row="0"
-                        Grid.Column="1"
-                        VerticalAlignment="Center"
-                        FontSize="20"
-                        Text="{Binding Str}" />
+                            <Label
+                                Grid.Row="5"
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Content="{Binding Creativity}"
+                                FontFamily="Courier New"
+                                FontSize="23"
+                                FontWeight="Normal" />
 
-                    <TextBlock
-                        Grid.Row="1"
-                        Grid.Column="1"
-                        VerticalAlignment="Center"
-                        FontSize="20"
-                        Text="{Binding Agi}" />
+                            <Label
+                                Grid.Row="6"
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Content="{Binding HealthPoints}"
+                                FontFamily="Courier New"
+                                FontSize="23"
+                                FontWeight="Normal" />
 
-                    <TextBlock
-                        Grid.Row="2"
-                        Grid.Column="1"
-                        VerticalAlignment="Center"
-                        FontSize="20"
-                        Text="{Binding Int}" />
+                            <Label
+                                Grid.Row="7"
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Content="{Binding Hygine}"
+                                FontFamily="Courier New"
+                                FontSize="23"
+                                FontWeight="Normal" />
 
-                    <TextBlock
-                        Grid.Row="3"
-                        Grid.Column="1"
-                        VerticalAlignment="Center"
-                        FontSize="20"
-                        Text="{Binding Comm}" />
+                            <TextBlock
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                FontFamily="Consolas"
+                                FontSize="20"
+                                Text="{Binding Str}" />
 
-                    <TextBlock
-                        Grid.Row="4"
-                        Grid.Column="1"
-                        VerticalAlignment="Center"
-                        FontSize="20"
-                        Text="{Binding MenStb}" />
+                            <TextBlock
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                FontFamily="Consolas"
+                                FontSize="20"
+                                Text="{Binding Agi}" />
 
-                    <TextBlock
-                        Grid.Row="5"
-                        Grid.Column="1"
-                        VerticalAlignment="Center"
-                        FontSize="20"
-                        Text="{Binding Crt}" />
+                            <TextBlock
+                                Grid.Row="2"
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                FontFamily="Consolas"
+                                FontSize="20"
+                                Text="{Binding Int}" />
 
-                    <TextBlock
-                        Grid.Row="6"
-                        Grid.Column="1"
-                        VerticalAlignment="Center"
-                        FontSize="20"
-                        Text="{Binding Hp}" />
+                            <TextBlock
+                                Grid.Row="3"
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                FontFamily="Consolas"
+                                FontSize="20"
+                                Text="{Binding Comm}" />
 
-                    <TextBlock
-                        Grid.Row="7"
-                        Grid.Column="1"
-                        VerticalAlignment="Center"
-                        FontSize="20"
-                        Text="{Binding Hyg}" />
+                            <TextBlock
+                                Grid.Row="4"
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                FontFamily="Consolas"
+                                FontSize="20"
+                                Text="{Binding MenStb}" />
+
+                            <TextBlock
+                                Grid.Row="5"
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                FontFamily="Consolas"
+                                FontSize="20"
+                                Text="{Binding Crt}" />
+
+                            <TextBlock
+                                Grid.Row="6"
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                FontFamily="Consolas"
+                                FontSize="20"
+                                Text="{Binding Hp}" />
+
+                            <TextBlock
+                                Grid.Row="7"
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                FontFamily="Consolas"
+                                FontSize="20"
+                                Text="{Binding Hyg}" />
+
+                        </Grid>
+
+                    </Border>
+
+
+                    <Grid x:Name="CharacteristicsGrid" Grid.Row="1">
+
+                        <ScrollViewer>
+
+                            <Grid x:Name="Child_of_CharacteristicsGrid_1">
+
+                                <!--  2 Rows  -->
+                                <Grid.RowDefinitions>
+
+                                    <!--  Character traits  -->
+                                    <RowDefinition Height="auto" />
+
+                                    <!--  Active Debuffs  -->
+                                    <RowDefinition Height="* " />
+
+                                </Grid.RowDefinitions>
+
+                                <Border
+                                    Padding="15,10,15,10"
+                                    BorderBrush="white"
+                                    BorderThickness="0,0,0,1">
+
+                                    <Grid x:Name="TraitsGrid" Grid.Row="0">
+
+                                        <!--  2 Rows  -->
+                                        <Grid.RowDefinitions>
+
+                                            <!--  Traits label  -->
+                                            <RowDefinition Height="auto" />
+
+                                            <!--  Traits Values  -->
+                                            <RowDefinition Height="auto" />
+
+                                        </Grid.RowDefinitions>
+
+                                        <Label
+                                            Grid.Row="0"
+                                            HorizontalAlignment="Center"
+                                            Content="{Binding TraitsLabel}"
+                                            FontFamily="Agency FB"
+                                            FontSize="25" />
+
+                                        <TextBlock
+                                            Grid.Row="1"
+                                            FontFamily="Consolas"
+                                            FontSize="20"
+                                            Text="{Binding Traits}"
+                                            TextAlignment="Center"
+                                            TextWrapping="Wrap" />
+
+                                    </Grid>
+
+                                </Border>
+
+
+                                <Grid
+                                    x:Name="DebuffGrid"
+                                    Grid.Row="1"
+                                    Margin="15,10,15,10">
+
+                                    <!--  2 Rows  -->
+                                    <Grid.RowDefinitions>
+
+                                        <!--  Debuff label  -->
+                                        <RowDefinition Height="auto" />
+
+                                        <!--  Debuff Values  -->
+                                        <RowDefinition Height="auto" />
+
+                                    </Grid.RowDefinitions>
+
+                                    <Label
+                                        Grid.Row="0"
+                                        HorizontalAlignment="Center"
+                                        Content="{Binding DebuffsLabel}"
+                                        FontFamily="Agency FB"
+                                        FontSize="25" />
+
+                                    <TextBlock
+                                        Grid.Row="1"
+                                        FontFamily="Consolas"
+                                        FontSize="20"
+                                        Text="{Binding Debuffs}"
+                                        TextAlignment="Center"
+                                        TextWrapping="Wrap" />
+
+                                </Grid>
+
+                            </Grid>
+
+                        </ScrollViewer>
+
+                    </Grid>
 
                 </Grid>
 
             </Border>
 
-            <Grid x:Name="Child_of_ChildGrid_2_StatChartGrid" Grid.Column="1">
+
+            <Grid
+                x:Name="Child_of_ChildGrid_2_StatChartGrid"
+                Grid.Column="1"
+                Margin="0,15,0,0">
 
                 <lvc:PolarChart
                     AngleAxes="{Binding AngleAxes}"
@@ -300,3 +440,6 @@
     </Grid>
 
 </UserControl>
+
+<!--
+-->

@@ -21,11 +21,13 @@ namespace HumanPlayerStatusApp.ViewModel
 
         public ICommand CloseApp { get; }
 
+        public ICommand MinimizeApp { get; }
+
         public NavigationMenuItemsList navigationMenuItemsList { get; set; }
 
         public NavigationStore navigationStore { get; set; }
 
-        public ViewModelBase CurrentViewModel
+        public ViewModelBase? CurrentViewModel
         {
             get{ return navigationStore.CurrentViewModel;}
         }
@@ -43,6 +45,8 @@ namespace HumanPlayerStatusApp.ViewModel
             };
 
             CloseApp = new CloseApplicationCommand();
+
+            MinimizeApp = new MinimizingCommand();
         }
 
         private void OnCurrentViewModelChanged()

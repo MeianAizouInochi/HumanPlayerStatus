@@ -30,7 +30,7 @@ namespace HumanPlayerStatusApp.Commands
             _questListItemViewModel = questListItemViewModel;
         }
 
-        public override async void Execute(object? parameter)
+        public override void Execute(object? parameter)
         {
             _ = DbSubmitQuest();
 

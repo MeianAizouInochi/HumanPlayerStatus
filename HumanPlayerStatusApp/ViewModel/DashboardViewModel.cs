@@ -223,7 +223,34 @@ namespace HumanPlayerStatusApp.ViewModel
 
         private AzureDBContext? dBContext { get; }
 
-        public PlayerStats? _playerStats { get; }
+        public string? TraitsLabel { get; set; }
+
+        private string? traits;
+
+        public string? Traits
+        {
+            get { return traits; }
+            set 
+            { 
+                traits = value;
+                OnPropertyChanged(nameof(Traits));
+            }
+        }
+
+        public string? DebuffsLabel { get; set; }
+
+        private string? debuffs;
+
+        public string? Debuffs
+        {
+            get { return debuffs; }
+            set 
+            { 
+                debuffs = value;
+                OnPropertyChanged(nameof(Debuffs));
+            }
+        }
+
 
         public DashboardViewModel()
         {
@@ -248,6 +275,10 @@ namespace HumanPlayerStatusApp.ViewModel
             Hygine = "HYG : ";
 
             HumanPlayerLevelLabel = "Lv: ";
+
+            TraitsLabel = "TRAITS";
+
+            DebuffsLabel = "DEBUFFS";
 
             dBContext = new AzureDBContext();
 
@@ -278,6 +309,8 @@ namespace HumanPlayerStatusApp.ViewModel
                 Crt = _GetPlayerStats.CRT;
                 Hp = _GetPlayerStats.HP;
                 Hyg = _GetPlayerStats.HYG;
+                Traits = string.Join(", ", _GetPlayerStats.Traits);
+                Debuffs = string.Join(", ", _GetPlayerStats.Debuffs);
 
                 var TempExpPercent = (HumanPlayerExp * 100) / HumanPlayerLevelMaxExp;
 

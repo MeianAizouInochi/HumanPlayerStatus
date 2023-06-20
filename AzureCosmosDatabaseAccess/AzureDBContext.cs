@@ -7,6 +7,7 @@ using System.Windows;
 using System;
 using System.Windows.Controls;
 using System.Collections.Generic;
+using System.Security.RightsManagement;
 
 namespace AzureCosmosDatabaseAccess
 {
@@ -16,7 +17,7 @@ namespace AzureCosmosDatabaseAccess
 
         private const string HumanPlayerDataContainerId = "HumanPlayerData";
 
-        private const string QuestContainer_quest_PartitionKey = "Quest";
+        private const string Quest_PartitionKey = "Quest";
 
         private CosmosClient _Client;
 
@@ -51,6 +52,7 @@ namespace AzureCosmosDatabaseAccess
                 item: playerstats,
                 partitionKey: new PartitionKey(playerstats.Id)
                 );
+
         }
 
 
@@ -132,15 +134,28 @@ namespace AzureCosmosDatabaseAccess
 
             ItemResponse<QuestModel> response = await container.UpsertItemAsync(
                      item: _Quest,
-                     partitionKey: new PartitionKey(QuestContainer_quest_PartitionKey)
+                     partitionKey: new PartitionKey(Quest_PartitionKey)
                      );
 
         }
 
+        /// <summary>
+        /// This function creates the Quest Item in the CosmosDb.
+        /// </summary>
+        /// <param name="_Quest"></param>
+        /// <returns></returns>
+        public async Task CreateQuest(QuestModel _Quest)
+        {
+            Database DB = _Client.GetDatabase(DatabaseId);
 
-        //public async Task TransactBatchUpdate_Quest_Stats() 
-        //{
-        //    PartitionKey partitionKey = new PartitionKey();
-        //}
+            Container container = DB.GetContainer(HumanPlayerDataContainerId);
+
+            ItemResponse<QuestModel> response =  await container.CreateItemAsync<QuestModel>
+                (
+                item:_Quest,
+                partitionKey: new PartitionKey(Quest_PartitionKey)
+                );
+
+        }
     }
 }

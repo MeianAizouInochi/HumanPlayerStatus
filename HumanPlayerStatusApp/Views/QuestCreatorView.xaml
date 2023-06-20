@@ -9,21 +9,200 @@
     d:DesignWidth="800"
     mc:Ignorable="d">
 
+    <UserControl.Resources>
+
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+
+                <ResourceDictionary Source="IconResources.xaml" />
+
+            </ResourceDictionary.MergedDictionaries>
+
+        </ResourceDictionary>
+
+    </UserControl.Resources>
+
     <Grid x:Name="QuestCreatorGrid_1">
 
-        <Grid.RowDefinitions>
+        <!--  2 Columns  -->
+        <Grid.ColumnDefinitions>
 
-            <RowDefinition Height="auto" />
+            <!--  Quest Creator Column  -->
+            <ColumnDefinition Width="0.5*" />
 
-            <RowDefinition Height="auto" />
+            <!--  Available Quest Deletor Column  -->
+            <ColumnDefinition Width="0.5*" />
 
-            <RowDefinition Height="auto" />
+        </Grid.ColumnDefinitions>
 
-            <RowDefinition Height="auto" />
+        <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto">
 
-        </Grid.RowDefinitions>
+            <Grid x:Name="ChildofQuestCreatorGrid_1">
 
-        <Label Content="Here goes the quest creator" />
+                <Border
+                    Padding="15,5,15,5"
+                    BorderBrush="White"
+                    BorderThickness="0,0,1,0">
+
+                    <Grid x:Name="ChildofChildGrid_1" VerticalAlignment="Center">
+
+                        <!--  8 Rows  -->
+                        <Grid.RowDefinitions>
+
+                            <RowDefinition Height="auto" />
+
+                            <RowDefinition Height="auto" />
+
+                            <RowDefinition Height="auto" />
+
+                            <RowDefinition Height="auto" />
+
+                            <RowDefinition Height="auto" />
+
+                            <RowDefinition Height="auto" />
+
+                            <RowDefinition Height="auto" />
+
+                            <RowDefinition Height="auto" />
+
+                            <RowDefinition Height="auto" />
+
+                        </Grid.RowDefinitions>
+
+                        <TextBlock
+                            Grid.Row="0"
+                            Margin="0,0,0,10"
+                            FontSize="18"
+                            Text="{Binding idInputLabel}"
+                            TextWrapping="Wrap" />
+
+                        <Grid Grid.Row="1" Margin="0,0,0,25">
+
+                            <Border Background="White" CornerRadius="15">
+
+                                <TextBox
+                                    Padding="10"
+                                    Background="Transparent"
+                                    BorderBrush="Transparent"
+                                    BorderThickness="0"
+                                    FontSize="15"
+                                    Text="{Binding idInput}" />
+
+                            </Border>
+
+                        </Grid>
+
+                        <TextBlock
+                            Grid.Row="2"
+                            Margin="0,0,0,10"
+                            FontSize="18"
+                            Text="{Binding QuestDescriptionInputLabel}"
+                            TextWrapping="Wrap" />
+
+                        <Grid Grid.Row="3" Margin="0,0,0,25">
+
+                            <Border Background="White" CornerRadius="15">
+
+                                <TextBox
+                                    Padding="15"
+                                    Background="Transparent"
+                                    BorderBrush="Transparent"
+                                    BorderThickness="0"
+                                    FontSize="15"
+                                    Text="{Binding QuestDescriptionInput}" />
+
+                            </Border>
+
+                        </Grid>
+
+                        <TextBlock
+                            Grid.Row="4"
+                            Margin="0,0,0,10"
+                            FontSize="18"
+                            Text="{Binding IncrementStatTypeInputLabel}"
+                            TextWrapping="Wrap" />
+
+                        <ComboBox
+                            Grid.Row="5"
+                            Margin="0,0,0,25"
+                            Padding="7"
+                            FontSize="15"
+                            ItemsSource="{Binding StatTypes}"
+                            SelectedItem="{Binding SelectedStatType}" />
+
+                        <TextBlock
+                            Grid.Row="6"
+                            Margin="0,0,0,10"
+                            FontSize="18"
+                            Text="{Binding IncrementStatAmountInputLabel}"
+                            TextWrapping="Wrap" />
+
+                        <Grid Grid.Row="7" Margin="0,0,0,25">
+
+                            <Border Background="White" CornerRadius="15">
+
+                                <TextBox
+                                    Padding="15"
+                                    Background="Transparent"
+                                    BorderBrush="Transparent"
+                                    BorderThickness="0"
+                                    FontSize="15"
+                                    Text="{Binding IncrementStatAmountInput}" />
+
+                            </Border>
+
+                        </Grid>
+
+                        <Button
+                            Grid.Row="8"
+                            Background="Transparent"
+                            BorderBrush="Transparent"
+                            BorderThickness="0"
+                            Command="{Binding CreateQuest}">
+
+                            <Border
+                                Padding="15,5,15,5"
+                                BorderBrush="White"
+                                BorderThickness="2"
+                                CornerRadius="15">
+
+                                <Grid>
+
+                                    <Grid.ColumnDefinitions>
+
+                                        <ColumnDefinition Width="auto" />
+
+                                        <ColumnDefinition Width="*" />
+
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Grid.Column="0" Content="{Binding CreateQuestButtonLabel}" />
+
+                                    <ContentPresenter Grid.Column="1">
+
+                                        <ContentPresenter.Content>
+
+                                            <ContentPresenter ContentTemplate="{StaticResource CraftIcon}" />
+
+                                        </ContentPresenter.Content>
+
+                                    </ContentPresenter>
+
+                                </Grid>
+
+                            </Border>
+
+                        </Button>
+
+                    </Grid>
+
+                </Border>
+
+            </Grid>
+        </ScrollViewer>
+
+
 
     </Grid>
 

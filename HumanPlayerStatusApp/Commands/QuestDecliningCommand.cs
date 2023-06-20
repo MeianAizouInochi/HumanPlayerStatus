@@ -28,7 +28,7 @@ namespace HumanPlayerStatusApp.Commands
             questListItemViewModel = _questListItemViewModel;
         }
 
-        public override async void Execute(object? parameter)
+        public override void Execute(object? parameter)
         {
             _ = DbDeclineQuest();
         }

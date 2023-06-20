@@ -29,5 +29,9 @@ namespace DataModelLayer.DataModels
         public float HP { get; set; }
                
         public float HYG { get; set; }
+
+        public string[]? Traits { get; set; }
+
+        public string[]? Debuffs { get; set; }
     }
 }

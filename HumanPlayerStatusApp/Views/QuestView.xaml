@@ -41,7 +41,7 @@
             BorderBrush="White"
             BorderThickness="0,0,1,0"
             ItemsSource="{Binding QuestList}"
-            ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
             ScrollViewer.VerticalScrollBarVisibility="Hidden">
 
             <ListView.ItemTemplate>
@@ -374,6 +374,7 @@
                             </Grid>
 
                         </Grid>
+
                     </Border>
 
                 </DataTemplate>
@@ -387,112 +388,3 @@
     </Grid>
 
 </UserControl>
-
-<!--<Grid x:Name="QuestListViewItem_1">
-
-    <Grid.ColumnDefinitions>
-
-        <ColumnDefinition Width="*" />
-
-        <ColumnDefinition Width="*" />
-
-        <ColumnDefinition Width="*" />
-
-    </Grid.ColumnDefinitions>
-
-    <Border BorderBrush="red" BorderThickness="1">
-
-        <Grid Grid.Column="0">
-
-            <Grid.RowDefinitions>
-
-                <RowDefinition Height="0.3*" />
-
-                <RowDefinition Height="0.3*" />
-
-                <RowDefinition Height="0.3*" />
-
-            </Grid.RowDefinitions>
-
-            <Grid.ColumnDefinitions>
-
-                <ColumnDefinition Width="0.25*" />
-
-                <ColumnDefinition Width="0.25*" />
-
-                <ColumnDefinition Width="0.25*" />
-
-                <ColumnDefinition Width="0.25*" />
-
-            </Grid.ColumnDefinitions>
-
-            <Label
-                                    x:Name="questName"
-                                    Grid.Row="0"
-                                    Grid.Column="0"
-                                    Grid.ColumnSpan="2"
-                                    Content="{Binding QuestDescription}" />
-
-            <Image
-                                    x:Name="LevelUpIcon"
-                                    Grid.Row="0"
-                                    Grid.RowSpan="2"
-                                    Grid.Column="2"
-                                    Source="{Binding ImagePath}" />
-
-            <Label
-                                    x:Name="incrementAmount"
-                                    Grid.Row="0"
-                                    Grid.Column="3"
-                                    Content="{Binding IncrementAmount}" />
-            <Label
-                                    x:Name="incrementStatType"
-                                    Grid.Row="1"
-                                    Grid.Column="3"
-                                    Content="{Binding IncrementStatType}" />
-
-            <Label
-                                    x:Name="stackedLabel"
-                                    Grid.Row="2"
-                                    Grid.Column="0"
-                                    Content="{Binding StackedLabel}" />
-
-            <TextBlock
-                                    x:Name="stackedNumber"
-                                    Grid.Row="2"
-                                    Grid.Column="1"
-                                    Grid.ColumnSpan="2"
-                                    Text="{Binding StackedNumber}" />
-
-
-
-            <Button
-                                    Grid.Row="2"
-                                    Grid.Column="3"
-                                    Background="Transparent"
-                                    BorderThickness="0"
-                                    Command="{Binding}">
-                <ContentPresenter>
-
-                    <ContentPresenter.Content>
-                        <Grid Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type ContentPresenter}}}">
-
-                            <ContentPresenter
-                                                    MaxWidth="70"
-                                                    MaxHeight="70"
-                                                    HorizontalAlignment="Center"
-                                                    ContentTemplate="{StaticResource PlusIcon}" />
-
-                        </Grid>
-
-
-
-                    </ContentPresenter.Content>
-
-                </ContentPresenter>
-            </Button>
-        </Grid>
-
-    </Border>
-
-</Grid>-->

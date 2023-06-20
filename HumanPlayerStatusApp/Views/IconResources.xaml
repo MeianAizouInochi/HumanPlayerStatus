@@ -544,6 +544,121 @@
         </Viewbox>
     </DataTemplate>
 
+    <DataTemplate x:Key="CraftIcon">
+
+        <Viewbox Width="15.997" Height="14.968">
+            <Canvas
+                Name="svg9"
+                Width="15.997"
+                Height="14.968">
+                <Canvas.RenderTransform>
+                    <TranslateTransform X="0" Y="0" />
+                </Canvas.RenderTransform>
+                <Canvas.Resources />
+                <!--  Unknown tag: sodipodi:namedview  -->
+                <Canvas Name="SVGRepo_bgCarrier">
+                    <Canvas.RenderTransform>
+                        <TranslateTransform X="-0.003" Y="-1" />
+                    </Canvas.RenderTransform>
+                </Canvas>
+                <Canvas Name="SVGRepo_tracerCarrier">
+                    <Canvas.RenderTransform>
+                        <TranslateTransform X="-0.003" Y="-1" />
+                    </Canvas.RenderTransform>
+                </Canvas>
+                <Canvas Name="SVGRepo_iconCarrier">
+                    <Canvas.RenderTransform>
+                        <MatrixTransform Matrix="-1 0 0 1 16 -1" />
+                    </Canvas.RenderTransform>
+                    <Path
+                        Name="path4"
+                        Data="M 6 2 13 9 16 6 11.52 1.52 C 11.52 1.52 8.55 2.55 7 1 Z"
+                        Fill="#FF85328F" />
+                    <Path
+                        Name="path6"
+                        Data="m 8.8 5.79 -8.53 8.52 c -0.165 0.178 -0.267 0.417 -0.267 0.68 0 0.263 0.101 0.502 0.267 0.681 0.181 0.183 0.433 0.297 0.711 0.297 0.253 0 0.484 -0.094 0.66 -0.248 L 10.21 7.201 Z"
+                        Fill="#FF85328F" />
+                </Canvas>
+            </Canvas>
+        </Viewbox>
+
+    </DataTemplate>
+
+    <DataTemplate x:Key="MinimizeIcon">
+
+        <Viewbox Width="35" Height="35">
+
+            <Canvas
+                Name="svg8"
+                Width="5.3073775"
+                Height="5.3103535">
+                <Canvas.RenderTransform>
+                    <TranslateTransform X="0" Y="0" />
+                </Canvas.RenderTransform>
+                <Canvas.Resources />
+                <!--  Unknown tag: sodipodi:namedview  -->
+                <Canvas Name="SVGRepo_bgCarrier">
+                    <Canvas.RenderTransform>
+                        <TranslateTransform X="-0.53222656" Y="-0.52925079" />
+                    </Canvas.RenderTransform>
+                </Canvas>
+                <Canvas Name="SVGRepo_tracerCarrier">
+                    <Canvas.RenderTransform>
+                        <TranslateTransform X="-0.53222656" Y="-0.52925079" />
+                    </Canvas.RenderTransform>
+                </Canvas>
+                <Canvas Name="SVGRepo_iconCarrier">
+                    <Canvas.RenderTransform>
+                        <TranslateTransform X="-0.53222656" Y="-0.52925079" />
+                    </Canvas.RenderTransform>
+                    <Path
+                        Name="path18035"
+                        Data="M 1.8515625 0.52929688 A 0.26460978 0.26460978 0 0 0 1.5917969 0.796875 v 0.5292969 c 0 0.1511557 -0.1144694 0.265625 -0.265625 0.265625 H 0.79687501 a 0.26464845 0.26464845 0 1 0 0 0.5292969 H 1.3261719 c 0.4351609 0 0.7949219 -0.359761 0.7949219 -0.7949219 V 0.796875 A 0.26460978 0.26460978 0 0 0 1.8515625 0.52929688 Z"
+                        Fill="#FFFFFFFF"
+                        Opacity="1"
+                        StrokeEndLineCap="Round"
+                        StrokeLineJoin="Round"
+                        StrokeMiterLimit="4"
+                        StrokeStartLineCap="Round"
+                        StrokeThickness="0.529167" />
+                    <Path
+                        Name="path17996"
+                        Data="m 0.77148438 4.2304688 a 0.26460978 0.26460978 0 0 0 0.0253906 0.5273437 H 1.3261719 c 0.1511557 0 0.265625 0.1144693 0.265625 0.265625 v 0.5292968 a 0.26464845 0.26464845 0 1 0 0.5292969 0 V 5.0234375 c 0 -0.435161 -0.359761 -0.7929687 -0.7949219 -0.7929687 H 0.79687498 a 0.26460978 0.26460978 0 0 0 -0.0253906 0 z"
+                        Fill="#FFFFFFFF"
+                        Opacity="1"
+                        StrokeEndLineCap="Round"
+                        StrokeLineJoin="Round"
+                        StrokeMiterLimit="4"
+                        StrokeStartLineCap="Round"
+                        StrokeThickness="0.529167" />
+                    <Path
+                        Name="path17952"
+                        Data="m 5.0234374 4.2304688 c -0.4351607 0 -0.7929686 0.3578077 -0.7929686 0.7929687 v 0.5292968 a 0.26460978 0.26460978 0 1 0 0.5273436 0 V 5.0234375 c 0 -0.1511557 0.1144694 -0.265625 0.265625 -0.265625 h 0.5292971 a 0.26460978 0.26460978 0 1 0 0 -0.5273437 z"
+                        Fill="#FFFFFFFF"
+                        Opacity="1"
+                        StrokeEndLineCap="Round"
+                        StrokeLineJoin="Round"
+                        StrokeMiterLimit="4"
+                        StrokeStartLineCap="Round"
+                        StrokeThickness="0.529167" />
+                    <Path
+                        Name="path17909"
+                        Data="M 4.4902343 0.52929688 A 0.26460978 0.26460978 0 0 0 4.2304688 0.796875 v 0.5292969 c 0 0.4351609 0.3578076 0.7949219 0.7929686 0.7949219 h 0.5292971 a 0.26464845 0.26464845 0 1 0 0 -0.5292969 H 5.0234374 c -0.1511556 0 -0.265625 -0.1144693 -0.265625 -0.265625 V 0.796875 A 0.26460978 0.26460978 0 0 0 4.4902343 0.52929688 Z"
+                        Fill="#FFFFFFFF"
+                        Opacity="1"
+                        StrokeEndLineCap="Round"
+                        StrokeLineJoin="Round"
+                        StrokeMiterLimit="4"
+                        StrokeStartLineCap="Round"
+                        StrokeThickness="0.529167" />
+                    <Canvas.Resources />
+                </Canvas>
+            </Canvas>
+
+        </Viewbox>
+
+    </DataTemplate>
+
 </ResourceDictionary>
 
 <!--<Canvas

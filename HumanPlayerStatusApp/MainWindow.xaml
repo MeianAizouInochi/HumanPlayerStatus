@@ -8,10 +8,15 @@
     xmlns:viewmodels="clr-namespace:HumanPlayerStatusApp.ViewModel"
     xmlns:views="clr-namespace:HumanPlayerStatusApp.Views"
     Title="Human Player Status Window"
-    Width="800"
-    Height="450"
+    MinWidth="800"
+    MinHeight="600"
+    MaxWidth="1360"
+    MaxHeight="768"
     AllowsTransparency="True"
     Background="Transparent"
+    MouseDown="Window_MouseDown"
+    MouseMove="Window_MouseMove"
+    MouseUp="Window_MouseUp"
     ResizeMode="CanResizeWithGrip"
     WindowStyle="None"
     mc:Ignorable="d">
@@ -62,7 +67,7 @@
                         HorizontalAlignment="Center"
                         Content="{Binding WindowTitle}"
                         FontFamily="Agency FB"
-                        FontSize="30"
+                        FontSize="35"
                         FontStyle="Normal"
                         FontWeight="SemiBold" />
 
@@ -73,7 +78,30 @@
                         Height="auto"
                         HorizontalAlignment="Right">
 
+                        <Grid.ColumnDefinitions>
+
+                            <ColumnDefinition Width="auto" />
+
+                            <ColumnDefinition Width="auto" />
+
+                        </Grid.ColumnDefinitions>
                         <Button
+                            Grid.Column="0"
+                            Margin="0,0,25,0"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Command="{Binding MinimizeApp}">
+                            <ContentPresenter>
+                                <ContentPresenter.Content>
+                                    <ContentPresenter ContentTemplate="{StaticResource MinimizeIcon}" />
+                                </ContentPresenter.Content>
+                            </ContentPresenter>
+                        </Button>
+
+
+                        <Button
+                            Grid.Column="1"
+                            Margin="0,0,15,0"
                             Background="Transparent"
                             BorderThickness="0"
                             Command="{Binding CloseApp}">
@@ -88,6 +116,7 @@
 
 
                 </Grid>
+
             </Border>
 
             <Grid
