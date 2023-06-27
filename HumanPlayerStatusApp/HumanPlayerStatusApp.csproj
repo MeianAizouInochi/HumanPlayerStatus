@@ -5,7 +5,13 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <StartupObject>HumanPlayerStatusApp.App</StartupObject>
+    <ApplicationIcon>ProjectStaticAssets\mmorpg.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="ProjectStaticAssets\mmorpg.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="LiveChartsCore.SkiaSharpView.WPF" Version="2.0.0-beta.710" />
@@ -14,10 +20,6 @@
   <ItemGroup>
     <ProjectReference Include="..\AzureCosmosDatabaseAccess\AzureCosmosDatabaseAccess.csproj" />
     <ProjectReference Include="..\DataModelLayer\DataModelLayer.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="ProjectStaticAssets\" />
   </ItemGroup>
 
 </Project>
