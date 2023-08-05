@@ -9,8 +9,25 @@
     d:DesignWidth="800"
     mc:Ignorable="d">
 
+    <!--  Dictionary for icons reference  -->
+    <UserControl.Resources>
+
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+
+                <ResourceDictionary Source="IconResources.xaml" />
+
+            </ResourceDictionary.MergedDictionaries>
+
+        </ResourceDictionary>
+
+    </UserControl.Resources>
+
+    <!--  Main Frame  -->
     <Grid x:Name="DashboardGrid_1">
 
+        <!--  2 Rows  -->
         <Grid.RowDefinitions>
 
             <RowDefinition Height="auto" />
@@ -122,21 +139,24 @@
 
         </Border>
 
+        <!--  Grid containing stats and graph/chart  -->
         <Grid
             x:Name="ChildGrid_2"
             Grid.Row="1"
             Margin="0,0,0,0">
 
+            <!--  2 columns  -->
             <Grid.ColumnDefinitions>
 
-                <ColumnDefinition Width="0.3*" />
+                <ColumnDefinition Width="0.4*" />
 
-                <ColumnDefinition Width="0.7*" />
+                <ColumnDefinition Width="0.6*" />
 
             </Grid.ColumnDefinitions>
 
             <Border BorderBrush="white" BorderThickness="0,0,1,0">
 
+                <!--  Grid containing the stats and traits  -->
                 <Grid
                     x:Name="Child_of_ChildGrid_2_StatsGrid"
                     Grid.Column="0"
@@ -172,17 +192,21 @@
                                 <RowDefinition Height="auto" />
                             </Grid.RowDefinitions>
 
-                            <!--  2 Columns  -->
+                            <!--  3 Columns  -->
                             <Grid.ColumnDefinitions>
 
                                 <!--  PropertyName Column  -->
                                 <ColumnDefinition Width="auto" />
 
                                 <!--  PropertyValue Column  -->
+                                <ColumnDefinition Width="auto" />
+
+                                <!--  Debuff Values  -->
                                 <ColumnDefinition Width="*" />
 
                             </Grid.ColumnDefinitions>
 
+                            <!--  stat labels  -->
                             <Label
                                 Grid.Row="0"
                                 Grid.Column="0"
@@ -255,6 +279,7 @@
                                 FontSize="23"
                                 FontWeight="Normal" />
 
+                            <!--  stat values  -->
                             <TextBlock
                                 Grid.Row="0"
                                 Grid.Column="1"
@@ -318,6 +343,223 @@
                                 FontFamily="Consolas"
                                 FontSize="20"
                                 Text="{Binding Hyg}" />
+
+                            <!--  stat debuffs  -->
+                            <Grid Grid.Row="0" Grid.Column="2">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <ContentPresenter
+                                    Grid.Column="0"
+                                    Margin="10,0,0,0"
+                                    HorizontalAlignment="Center"
+                                    ContentTemplate="{StaticResource LevelUpIcon}">
+                                    <ContentPresenter.LayoutTransform>
+                                        <RotateTransform Angle="180" />
+                                    </ContentPresenter.LayoutTransform>
+                                </ContentPresenter>
+
+                                <TextBlock
+                                    Grid.Column="1"
+                                    Margin="10,0,0,0"
+                                    VerticalAlignment="Center"
+                                    FontFamily="Consolas"
+                                    FontSize="20"
+                                    Text="{Binding DebuffRates[0]}" />
+
+                            </Grid>
+
+                            <Grid Grid.Row="1" Grid.Column="2">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <ContentPresenter
+                                    Grid.Column="0"
+                                    Margin="10,0,0,0"
+                                    HorizontalAlignment="Center"
+                                    ContentTemplate="{StaticResource LevelUpIcon}">
+                                    <ContentPresenter.LayoutTransform>
+                                        <RotateTransform Angle="180" />
+                                    </ContentPresenter.LayoutTransform>
+                                </ContentPresenter>
+
+                                <TextBlock
+                                    Grid.Column="1"
+                                    Margin="10,0,0,0"
+                                    VerticalAlignment="Center"
+                                    FontFamily="Consolas"
+                                    FontSize="20"
+                                    Text="{Binding DebuffRates[1]}" />
+
+                            </Grid>
+
+                            <Grid Grid.Row="2" Grid.Column="2">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <ContentPresenter
+                                    Grid.Column="0"
+                                    Margin="10,0,0,0"
+                                    HorizontalAlignment="Center"
+                                    ContentTemplate="{StaticResource LevelUpIcon}">
+                                    <ContentPresenter.LayoutTransform>
+                                        <RotateTransform Angle="180" />
+                                    </ContentPresenter.LayoutTransform>
+                                </ContentPresenter>
+
+                                <TextBlock
+                                    Grid.Column="1"
+                                    Margin="10,0,0,0"
+                                    VerticalAlignment="Center"
+                                    FontFamily="Consolas"
+                                    FontSize="20"
+                                    Text="{Binding DebuffRates[2]}" />
+
+                            </Grid>
+
+                            <Grid Grid.Row="3" Grid.Column="2">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <ContentPresenter
+                                    Grid.Column="0"
+                                    Margin="10,0,0,0"
+                                    HorizontalAlignment="Center"
+                                    ContentTemplate="{StaticResource LevelUpIcon}">
+                                    <ContentPresenter.LayoutTransform>
+                                        <RotateTransform Angle="180" />
+                                    </ContentPresenter.LayoutTransform>
+                                </ContentPresenter>
+
+                                <TextBlock
+                                    Grid.Column="1"
+                                    Margin="10,0,0,0"
+                                    VerticalAlignment="Center"
+                                    FontFamily="Consolas"
+                                    FontSize="20"
+                                    Text="{Binding DebuffRates[3]}" />
+
+                            </Grid>
+
+                            <Grid Grid.Row="4" Grid.Column="2">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <ContentPresenter
+                                    Grid.Column="0"
+                                    Margin="10,0,0,0"
+                                    HorizontalAlignment="Center"
+                                    ContentTemplate="{StaticResource LevelUpIcon}">
+                                    <ContentPresenter.LayoutTransform>
+                                        <RotateTransform Angle="180" />
+                                    </ContentPresenter.LayoutTransform>
+                                </ContentPresenter>
+
+                                <TextBlock
+                                    Grid.Column="1"
+                                    Margin="10,0,0,0"
+                                    VerticalAlignment="Center"
+                                    FontFamily="Consolas"
+                                    FontSize="20"
+                                    Text="{Binding DebuffRates[4]}" />
+
+                            </Grid>
+
+                            <Grid Grid.Row="5" Grid.Column="2">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <ContentPresenter
+                                    Grid.Column="0"
+                                    Margin="10,0,0,0"
+                                    HorizontalAlignment="Center"
+                                    ContentTemplate="{StaticResource LevelUpIcon}">
+                                    <ContentPresenter.LayoutTransform>
+                                        <RotateTransform Angle="180" />
+                                    </ContentPresenter.LayoutTransform>
+                                </ContentPresenter>
+
+                                <TextBlock
+                                    Grid.Column="1"
+                                    Margin="10,0,0,0"
+                                    VerticalAlignment="Center"
+                                    FontFamily="Consolas"
+                                    FontSize="20"
+                                    Text="{Binding DebuffRates[5]}" />
+
+                            </Grid>
+
+                            <Grid Grid.Row="6" Grid.Column="2">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <ContentPresenter
+                                    Grid.Column="0"
+                                    Margin="10,0,0,0"
+                                    HorizontalAlignment="Center"
+                                    ContentTemplate="{StaticResource LevelUpIcon}">
+                                    <ContentPresenter.LayoutTransform>
+                                        <RotateTransform Angle="180" />
+                                    </ContentPresenter.LayoutTransform>
+                                </ContentPresenter>
+
+                                <TextBlock
+                                    Grid.Column="1"
+                                    Margin="10,0,0,0"
+                                    VerticalAlignment="Center"
+                                    FontFamily="Consolas"
+                                    FontSize="20"
+                                    Text="{Binding DebuffRates[6]}" />
+
+                            </Grid>
+
+                            <Grid Grid.Row="7" Grid.Column="2">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <ContentPresenter
+                                    Grid.Column="0"
+                                    Margin="10,0,0,0"
+                                    HorizontalAlignment="Center"
+                                    ContentTemplate="{StaticResource LevelUpIcon}">
+                                    <ContentPresenter.LayoutTransform>
+                                        <RotateTransform Angle="180" />
+                                    </ContentPresenter.LayoutTransform>
+                                </ContentPresenter>
+
+                                <TextBlock
+                                    Grid.Column="1"
+                                    Margin="10,0,0,0"
+                                    VerticalAlignment="Center"
+                                    FontFamily="Consolas"
+                                    FontSize="20"
+                                    Text="{Binding DebuffRates[7]}" />
+
+                            </Grid>
 
                         </Grid>
 
@@ -422,7 +664,7 @@
 
             </Border>
 
-
+            <!--  Grid containing the chart  -->
             <Grid
                 x:Name="Child_of_ChildGrid_2_StatChartGrid"
                 Grid.Column="1"

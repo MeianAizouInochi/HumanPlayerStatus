@@ -1,13 +1,7 @@
 using DataModelLayer.DataModels;
-using DataModelLayer.DataIntegrityStore;
-using HumanPlayerStatusExceptions;
 using Microsoft.Azure.Cosmos;
 using System.Threading.Tasks;
-using System.Windows;
-using System;
-using System.Windows.Controls;
 using System.Collections.Generic;
-using System.Security.RightsManagement;
 
 namespace AzureCosmosDatabaseAccess
 {
@@ -156,6 +150,59 @@ namespace AzureCosmosDatabaseAccess
                 partitionKey: new PartitionKey(Quest_PartitionKey)
                 );
 
+        }
+
+        /// <summary>
+        /// Reads the Player Stats History data from the Database. Its asynchronous and returns a Task.
+        /// </summary>
+        /// <param name="_id"></param>
+        /// <param name="_partitionkey"></param>
+        /// <returns></returns>
+        public async Task<StatHistory> GetStatHistory(string _id, string _partitionkey ) 
+        {
+            Database db = _Client.GetDatabase(DatabaseId);
+            Container container = db.GetContainer(HumanPlayerDataContainerId);
+
+            ItemResponse<StatHistory> response = await container.ReadItemAsync<StatHistory>(
+                id:_id,
+                partitionKey:new PartitionKey(_partitionkey)
+                );
+
+            return response.Resource;
+        }
+
+        /// <summary>
+        /// Uploads/updates/inserts the Player Stats History data into the Database. Its asynchronous and returns a Task.
+        /// </summary>
+        /// <param name="_stathistory"></param>
+        /// <returns></returns>
+        public async Task UpateStatHistory(StatHistory _stathistory)
+        {
+            Database db = _Client.GetDatabase(DatabaseId);
+
+            Container container = db.GetContainer(HumanPlayerDataContainerId);
+
+            await container.UpsertItemAsync(
+                item: _stathistory,
+                partitionKey: new PartitionKey(_stathistory.Id)
+                );
+        }
+
+        /// <summary>
+        /// Creates the item statsHistory in the container.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public async Task CreatestatHistory(StatHistory obj)
+        {
+            Database db = _Client.GetDatabase(DatabaseId);
+
+            Container container = db.GetContainer (HumanPlayerDataContainerId);
+
+            await container.CreateItemAsync<StatHistory>(
+                item: obj,
+                partitionKey: new PartitionKey(obj.Id)
+                );
         }
     }
 }

@@ -4,9 +4,6 @@ using HumanPlayerStatusApp.Store;
 using HumanPlayerStatusApp.ViewModel;
 using Microsoft.Azure.Cosmos;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -41,6 +38,7 @@ namespace HumanPlayerStatusApp.Commands
         {
             try 
             {
+                //Update Quest
                 AzureDBContext azureDBContext = new AzureDBContext();
 
                 _model.QuestAcceptedFlag = _questAcceptedFlag;
@@ -116,6 +114,73 @@ namespace HumanPlayerStatusApp.Commands
 
                 await azureDBContext.UploadPlayerStats(_HumanPlayer);
 
+                //read statshistory
+                StatHistory _stathistory = await azureDBContext.GetStatHistory("HumanPlayerData|Meian|StatHistory", "Meian");
+
+                //perform functionalities on the above object.
+                switch (_model.IncrementStatType)
+                {
+                    case "STR":
+                        {
+                            DateTime dt = DateTime.Now;
+                            _stathistory.STR_history = new int[] { dt.Day,dt.Month,dt.Year};
+
+                            break;
+                        }
+                    case "INT":
+                        {
+                            DateTime dt = DateTime.Now;
+                            _stathistory.INT_history = new int[] { dt.Day, dt.Month, dt.Year };
+
+                            break;
+                        }
+                    case "AGI":
+                        {
+                            DateTime dt = DateTime.Now;
+                            _stathistory.AGI_history = new int[] { dt.Day, dt.Month, dt.Year };
+
+                            break;
+                        }
+                    case "COMM":
+                        {
+                            DateTime dt = DateTime.Now;
+                            _stathistory.COMM_history = new int[] { dt.Day, dt.Month, dt.Year };
+
+                            break;
+                        }
+                    case "MENSTB":
+                        {
+                            DateTime dt = DateTime.Now;
+                            _stathistory.MENSTB_history = new int[] { dt.Day, dt.Month, dt.Year };
+
+                            break;
+                        }
+                    case "CRT":
+                        {
+                            DateTime dt = DateTime.Now;
+                            _stathistory.CRT_history = new int[] { dt.Day, dt.Month, dt.Year };
+
+                            break;
+                        }
+                    case "HP":
+                        {
+                            DateTime dt = DateTime.Now;
+                            _stathistory.HP_history = new int[] { dt.Day, dt.Month, dt.Year };
+
+                            break;
+                        }
+                    case "HYG":
+                        {
+                            DateTime dt = DateTime.Now;
+                            _stathistory.HYG_history = new int[] { dt.Day, dt.Month, dt.Year };
+
+                            break;
+                        }
+                }
+
+                //update stathistory
+                await azureDBContext.UpateStatHistory(_stathistory);
+
                 _questListItemViewModel.QuestAcceptedFlag = _questAcceptedFlag;
 
                 _questListItemViewModel.StackedNumber = _model.StackedNumber;
@@ -127,7 +192,7 @@ namespace HumanPlayerStatusApp.Commands
             }           
             catch(Exception ex) 
             {
-                MessageBox.Show(ex.Message, "Some Major Shit happened!");
+                MessageBox.Show(ex.Message, "Some Major - Major Shit happened!");
             }
         }
     }

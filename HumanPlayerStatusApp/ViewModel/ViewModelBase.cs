@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
+using System.Diagnostics;
 
 namespace HumanPlayerStatusApp.ViewModel
 {
     /// <summary>
-    /// Base class for the View Models. It implements the INotifyPropertyChanged interface.
+    /// Base class fsor the View Models. It implements the INotifyPropertyChanged interface.
     /// This Class is Mother of all ViewModel Classes, for them to be able to use Property Changed Event.
     /// </summary>
     public class ViewModelBase : INotifyPropertyChanged
@@ -23,5 +19,13 @@ namespace HumanPlayerStatusApp.ViewModel
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
         }
+
+        public ViewModelBase()
+        {
+            Debug.WriteLine("Cerated ViewModelBase object.");
+
+        }
+
+        
     }
 }

@@ -1,11 +1,6 @@
 ﻿using HumanPlayerStatusApp.Store;
 using HumanPlayerStatusApp.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Diagnostics;
 using System.Windows;
 
 namespace HumanPlayerStatusApp
@@ -17,6 +12,8 @@ namespace HumanPlayerStatusApp
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            Debug.Write("Entered App OnStartUp");
+
             base.OnStartup(e);
 
             NavigationStore navStore = new NavigationStore() { CurrentViewModel = new DashboardViewModel() };

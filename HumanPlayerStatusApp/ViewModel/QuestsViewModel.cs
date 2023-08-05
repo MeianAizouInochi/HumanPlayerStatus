@@ -1,12 +1,9 @@
 ﻿using AzureCosmosDatabaseAccess;
 using DataModelLayer.DataModels;
-using HumanPlayerStatusApp.Commands;
 using Microsoft.Azure.Cosmos;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 

@@ -659,6 +659,12 @@
 
     </DataTemplate>
 
+    <DataTemplate x:Key="DebuffIcon">
+        <Viewbox>
+            
+        </Viewbox>
+    </DataTemplate>
+
 </ResourceDictionary>
 
 <!--<Canvas

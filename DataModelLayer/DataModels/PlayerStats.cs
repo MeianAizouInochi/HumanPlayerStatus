@@ -30,6 +30,8 @@ namespace DataModelLayer.DataModels
                
         public float HYG { get; set; }
 
+        public float[] DeuffRates { get; set; } = new float[8];
+
         public string[]? Traits { get; set; }
 
         public string[]? Debuffs { get; set; }

@@ -6,13 +6,8 @@ using LiveChartsCore.SkiaSharpView.Painting;
 using Microsoft.Azure.Cosmos;
 using LiveChartsCore.SkiaSharpView;
 using SkiaSharp;
-using Microsoft.Azure.Cosmos.Core;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Media;
 using System.Windows;
 
 namespace HumanPlayerStatusApp.ViewModel
@@ -197,6 +192,18 @@ namespace HumanPlayerStatusApp.ViewModel
             }
         }
 
+        private float[] debuffRates;
+
+        public float[] DebuffRates
+        {
+            get { return debuffRates; }
+            set
+            {
+                debuffRates = value;
+                OnPropertyChanged(nameof(DebuffRates));
+            }
+        }
+
         private ISeries[]? series;
 
         public ISeries[]? Series
@@ -221,7 +228,7 @@ namespace HumanPlayerStatusApp.ViewModel
             }
         }
 
-        private AzureDBContext? dBContext { get; }
+        private AzureDBContext dBContext { get; }
 
         public string? TraitsLabel { get; set; }
 
@@ -309,6 +316,7 @@ namespace HumanPlayerStatusApp.ViewModel
                 Crt = _GetPlayerStats.CRT;
                 Hp = _GetPlayerStats.HP;
                 Hyg = _GetPlayerStats.HYG;
+                DebuffRates = _GetPlayerStats.DeuffRates;
                 Traits = string.Join(", ", _GetPlayerStats.Traits);
                 Debuffs = string.Join(", ", _GetPlayerStats.Debuffs);
 
