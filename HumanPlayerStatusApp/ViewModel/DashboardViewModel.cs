@@ -316,7 +316,7 @@ namespace HumanPlayerStatusApp.ViewModel
                 Crt = _GetPlayerStats.CRT;
                 Hp = _GetPlayerStats.HP;
                 Hyg = _GetPlayerStats.HYG;
-                DebuffRates = _GetPlayerStats.DeuffRates;
+                DebuffRates = _GetPlayerStats.DebuffRates;
                 Traits = string.Join(", ", _GetPlayerStats.Traits);
                 Debuffs = string.Join(", ", _GetPlayerStats.Debuffs);
 

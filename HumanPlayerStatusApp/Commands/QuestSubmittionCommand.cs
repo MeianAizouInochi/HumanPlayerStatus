@@ -55,11 +55,11 @@ namespace HumanPlayerStatusApp.Commands
                         {
                             _HumanPlayer.STR += _model.IncrementAmount;
 
-                            break;
-                        }
-                    case "INT":
-                        {
-                            _HumanPlayer.INT += _model.IncrementAmount;
+                            _HumanPlayer.DebuffRates[0] -= 0.1F;
+                            
+                            _HumanPlayer.STR = (float)Math.Round(_HumanPlayer.STR);
+
+                            _HumanPlayer.DebuffRates[0] = (float)Math.Round(_HumanPlayer.DebuffRates[0]);
 
                             break;
                         }
@@ -67,36 +67,77 @@ namespace HumanPlayerStatusApp.Commands
                         {
                             _HumanPlayer.AGI += _model.IncrementAmount;
 
+                            _HumanPlayer.DebuffRates[1] -= 0.1F;
+
+                            _HumanPlayer.AGI = (float)Math.Round(_HumanPlayer.AGI);
+
+                            _HumanPlayer.DebuffRates[1] = (float)Math.Round(_HumanPlayer.DebuffRates[1]);
+                            break;
+                        }
+                    case "INT":
+                        {
+                            _HumanPlayer.INT += _model.IncrementAmount;
+
+                            _HumanPlayer.DebuffRates[2] -= 0.1F;
+
+                            _HumanPlayer.INT = (float)Math.Round(_HumanPlayer.INT);
+
+                            _HumanPlayer.DebuffRates[2] = (float)Math.Round(_HumanPlayer.DebuffRates[2]);
                             break;
                         }
                     case "COMM":
                         {
                             _HumanPlayer.COMM += _model.IncrementAmount;
+                            
+                            _HumanPlayer.DebuffRates[3] -= 0.1F;
 
+                            _HumanPlayer.COMM = (float)Math.Round(_HumanPlayer.COMM);
+
+                            _HumanPlayer.DebuffRates[3] = (float)Math.Round(_HumanPlayer.DebuffRates[3]);
                             break;
                         }
                     case "MENSTB":
                         {
                             _HumanPlayer.MENSTB += _model.IncrementAmount;
+                            
+                            _HumanPlayer.DebuffRates[4] -= 0.1F;
 
+                            _HumanPlayer.MENSTB = (float)Math.Round(_HumanPlayer.MENSTB);
+
+                            _HumanPlayer.DebuffRates[4] = (float)Math.Round(_HumanPlayer.DebuffRates[4]);
                             break;
                         }
                     case "CRT":
                         {
                             _HumanPlayer.CRT += _model.IncrementAmount;
+                            
+                            _HumanPlayer.DebuffRates[5] -= 0.1F;
+                            
+                            _HumanPlayer.CRT = (float)Math.Round(_HumanPlayer.CRT);
 
+                            _HumanPlayer.DebuffRates[5] = (float)Math.Round(_HumanPlayer.DebuffRates[5]);
                             break;
                         }
                     case "HP":
                         {
                             _HumanPlayer.HP += _model.IncrementAmount;
+                            
+                            _HumanPlayer.DebuffRates[6] -= 0.1F;
 
+                            _HumanPlayer.HP = (float)Math.Round(_HumanPlayer.HP);
+
+                            _HumanPlayer.DebuffRates[6] = (float)Math.Round(_HumanPlayer.DebuffRates[6]);
                             break;
                         }
                     case "HYG":
                         {
                             _HumanPlayer.HYG += _model.IncrementAmount;
+                            
+                            _HumanPlayer.DebuffRates[7] -= 0.1F;
 
+                            _HumanPlayer.HYG = (float)Math.Round(_HumanPlayer.HYG);
+
+                            _HumanPlayer.DebuffRates[7] = (float)Math.Round(_HumanPlayer.DebuffRates[7]);
                             break;
                         }
                 }
@@ -108,7 +149,7 @@ namespace HumanPlayerStatusApp.Commands
                     _HumanPlayer.HumanPlayerExp = _HumanPlayer.HumanPlayerExp - _HumanPlayer.HumanPlayerLevelMaxExp;
 
                     _HumanPlayer.HumanPlayerLevel += 1;
-
+                    
                     _HumanPlayer.HumanPlayerLevelMaxExp += _HumanPlayer.HumanPlayerLevel >= 25 ? (_HumanPlayer.HumanPlayerLevelMaxExp / 2) : (_HumanPlayer.HumanPlayerLevelMaxExp / 4);
                 }
 
