@@ -326,7 +326,7 @@ namespace HumanPlayerStatusApp.ViewModel
             }
             catch(CosmosException CosmosEx) 
             {
-                //TODO: Add a functionality to restart this function.
+                
                 MessageBoxResult res = MessageBox.Show(CosmosEx.Message + "\n Click Ok to Retry or Cancel to Exit Application!", "Error", MessageBoxButton.OKCancel);
 
                 if (res == MessageBoxResult.OK)
@@ -340,7 +340,6 @@ namespace HumanPlayerStatusApp.ViewModel
             }
             catch (Exception ex) 
             {
-                //TODO: Add a functionality to restart this function.
                 MessageBoxResult res = MessageBox.Show(ex.Message + "\n Click Ok to Retry or Cancel to Exit Application!", "Error", MessageBoxButton.OKCancel);
 
                 if (res == MessageBoxResult.OK)

@@ -32,7 +32,6 @@ namespace HumanPlayerStatusApp.ViewModel
         {
             QuestList = new ObservableCollection<QuestListItemViewModel>();
 
-            //TODO: Create Functionality to Rerun this function on failure.
             try
             {
                 AzureDBContext _dbContext = new AzureDBContext();
