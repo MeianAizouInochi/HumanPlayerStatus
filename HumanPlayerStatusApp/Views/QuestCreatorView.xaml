@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:HumanPlayerStatusApp.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:views="clr-namespace:HumanPlayerStatusApp.Views"
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
@@ -23,15 +24,46 @@
 
     </UserControl.Resources>
 
-    <Grid x:Name="QuestCreatorGrid_1">
+    <Grid x:Name="QuestCreatorbaseGrid_1">
 
         <!--  2 Columns  -->
         <Grid.ColumnDefinitions>
 
-            <!--  Quest Creator Column  -->
             <ColumnDefinition Width="0.5*" />
 
-            <!--  Available Quest Deletor Column  -->
+            <ColumnDefinition Width="0.5*" />
+
+        </Grid.ColumnDefinitions>
+
+        <Grid x:Name="NormalQuestCreatorView" Grid.Column="0">
+
+            <views:NormalQuestCreatorView />
+
+        </Grid>
+
+        <Grid x:Name="EventQuestCreatorView" Grid.Column="1">
+
+            <views:EventQuestCreatorView />
+
+        </Grid>
+
+    </Grid>
+
+    <!--<Grid x:Name="QuestCreatorGrid_1">
+
+    -->
+    <!--  2 Columns  -->
+    <!--
+        <Grid.ColumnDefinitions>
+
+    -->
+    <!--  Quest Creator Column  -->
+    <!--
+            <ColumnDefinition Width="0.5*" />
+
+    -->
+    <!--  Event Quest Creator Column  -->
+    <!--
             <ColumnDefinition Width="0.5*" />
 
         </Grid.ColumnDefinitions>
@@ -47,7 +79,9 @@
 
                     <Grid x:Name="ChildofChildGrid_1" VerticalAlignment="Center">
 
-                        <!--  8 Rows  -->
+    -->
+    <!--  8 Rows  -->
+    <!--
                         <Grid.RowDefinitions>
 
                             <RowDefinition Height="auto" />
@@ -200,10 +234,11 @@
                 </Border>
 
             </Grid>
+
         </ScrollViewer>
 
 
 
-    </Grid>
+    </Grid>-->
 
 </UserControl>

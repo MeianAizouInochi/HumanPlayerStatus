@@ -66,6 +66,11 @@ namespace HumanPlayerStatusApp.ViewModel
             }
         }
 
+        public QuestListItemViewModel()
+        {
+            
+        }
+
         public QuestListItemViewModel(QuestModel questModel)
         {
             AcceptQuest = new QuestAcceptingCommand(questModel, 1, this);

@@ -5,6 +5,7 @@ using Microsoft.Azure.Cosmos;
 using System;
 using System.Threading.Tasks;
 using System.Windows;
+using HumanPlayerStatusExceptions;
 
 namespace HumanPlayerStatusApp.Commands
 {
@@ -37,30 +38,59 @@ namespace HumanPlayerStatusApp.Commands
             {
                 AzureDBContext DBContext = new AzureDBContext();
 
-                _model.QuestAcceptedFlag = _questAcceptedFlag;
+                if (_model is EventQuestModel)
+                {
+                    EventQuestModel TempObj = (EventQuestModel)_model;
+
+                    if (TempObj.EventCompletionStatus == true || TempObj.EventState == false)
+                    {
+                        if (TempObj.EventCompletionStatus == true)
+                        {
+                            throw new HumanPlayerStatusException("You have already done this event.",101);
+                        }
+                        else 
+                        {
+                            throw new HumanPlayerStatusException("Event has Ended!",102);
+                        }
+                    }
+                    else
+                    {
+                        _model.QuestAcceptedFlag = _questAcceptedFlag;
+                    }
+                }
+                else
+                {
+                    _model.QuestAcceptedFlag = _questAcceptedFlag;
+
+                }
+
 
                 await DBContext.UpdateQuest(_model);
 
                 _questListItemViewModel.QuestAcceptedFlag = _questAcceptedFlag;
             }
+            catch (HumanPlayerStatusException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             catch (CosmosException CosmosEx)
             {
-                MessageBoxResult res =  MessageBox.Show(CosmosEx.Message+"\n Click Ok to Retry or Cancel to Exit Application!","Error",MessageBoxButton.OKCancel);
+                MessageBoxResult res = MessageBox.Show(CosmosEx.Message + "\n Click Ok to Retry or Cancel to Exit Application!", "Error", MessageBoxButton.OKCancel);
 
-                if(res == MessageBoxResult.OK) 
+                if (res == MessageBoxResult.OK)
                 {
                     _ = DbAcceptQuest();
                 }
-                else if(res == MessageBoxResult.Cancel) 
+                else if (res == MessageBoxResult.Cancel)
                 {
                     Application.Current.Shutdown();
                 }
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 MessageBoxResult res = MessageBox.Show(ex.Message + "\n Click Ok to Retry or Cancel to Exit Application!", "Error", MessageBoxButton.OKCancel);
-                
-                if(res == MessageBoxResult.OK)
+
+                if (res == MessageBoxResult.OK)
                 {
                     _ = DbAcceptQuest();
                 }

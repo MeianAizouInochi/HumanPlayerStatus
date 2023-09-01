@@ -4,9 +4,11 @@ namespace HumanPlayerStatusExceptions
 {
     public class HumanPlayerStatusException:Exception
     {
-        public HumanPlayerStatusException(string Message):base(Message)
+        public int ErrorCode { get; set; }
+
+        public HumanPlayerStatusException( string Message, int errorCode) : base(Message)
         {
-            //do something
+            ErrorCode = errorCode;
         }
     }
 }

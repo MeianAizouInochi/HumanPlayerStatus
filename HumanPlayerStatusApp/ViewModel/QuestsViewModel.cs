@@ -11,7 +11,21 @@ namespace HumanPlayerStatusApp.ViewModel
 {
     public class QuestsViewModel:ViewModelBase
     {
-		private ObservableCollection<QuestListItemViewModel>? questList;
+        private ObservableCollection<EventQuestListItemViewModel>? eventQuestList;
+
+        public ObservableCollection<EventQuestListItemViewModel>? EventQuestList
+        {
+            get { return eventQuestList; }
+            set 
+            { 
+                eventQuestList = value;
+
+                OnPropertyChanged(nameof(eventQuestList));
+            }
+        }
+
+
+        private ObservableCollection<QuestListItemViewModel>? questList;
 
 		public ObservableCollection<QuestListItemViewModel>? QuestList
 		{
@@ -25,7 +39,66 @@ namespace HumanPlayerStatusApp.ViewModel
 
         public QuestsViewModel()
         {
-            _ = MakeHumanPlayerQuestReadAPICall();
+            _ = MakeHumanPlayerQuestReadAPICall(); // Modify this to make calls for both normal and event quest.
+
+            _ = MakeHumanPlayerEventQuestReadAPICall();
+        }
+
+        private async Task MakeHumanPlayerEventQuestReadAPICall()
+        {
+            EventQuestList = new ObservableCollection<EventQuestListItemViewModel>();
+
+            try
+            {
+                AzureDBContext _dbContext = new AzureDBContext();
+
+                List<EventQuestModel> EventQuests = await _dbContext.GetItemsInEventQuestContainer();
+
+                foreach (EventQuestModel Q in EventQuests)
+                {
+                    EventQuestList.Add(new EventQuestListItemViewModel(Q)
+                    {
+                        QuestDescription = Q.QuestDescription,
+                        IncrementAmountDetails = Q.IncrementAmount.ToString() + " " + Q.IncrementStatType,
+                        StackedNumber = Q.StackedNumber,
+                        QuestAcceptedFlag = Q.QuestAcceptedFlag,
+                        AcceptButtonLabel = "Accept Quest",
+                        DeclineButtonLabel = "Decline Quest",
+                        SubmitButtonLabel = "Submit Quest",
+                        StartDate = (new DateTime(Q.StartDate[0], Q.StartDate[1], Q.StartDate[2])).ToString("dd/MM/yy"),
+                        EndDate = (new DateTime(Q.EndDate[0], Q.EndDate[1], Q.EndDate[2])).ToString("dd/MM/yy"),
+                        EventCompletionStatus = Q.EventCompletionStatus ? "Completed" : "Not Completed",
+                        EventState = Q.EventState ? "OnGoging" : "Ended"
+                    });
+                }
+            }
+            catch (CosmosException CosmosEx)
+            {
+                MessageBoxResult res = MessageBox.Show(CosmosEx.Message + "\n Click Ok to Retry or Cancel to Exit Application!", "Error", MessageBoxButton.OKCancel);
+
+                if (res == MessageBoxResult.OK)
+                {
+                    _ = MakeHumanPlayerEventQuestReadAPICall();
+                }
+                else if (res == MessageBoxResult.Cancel)
+                {
+                    Application.Current.Shutdown();
+                }
+                MessageBox.Show(CosmosEx.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBoxResult res = MessageBox.Show(ex.Message + "\n Click Ok to Retry or Cancel to Exit Application!", "Error", MessageBoxButton.OKCancel);
+
+                if (res == MessageBoxResult.OK)
+                {
+                    _ = MakeHumanPlayerEventQuestReadAPICall();
+                }
+                else if (res == MessageBoxResult.Cancel)
+                {
+                    Application.Current.Shutdown();
+                }
+            }
         }
 
         private async Task MakeHumanPlayerQuestReadAPICall()

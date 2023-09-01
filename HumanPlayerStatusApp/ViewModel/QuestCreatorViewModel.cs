@@ -11,105 +11,27 @@ namespace HumanPlayerStatusApp.ViewModel
 {
     public class QuestCreatorViewModel:ViewModelBase
     {
-        public string? CreateQuestButtonLabel { get; set; }
+        private NormalQuestCreatorViewModel normalQuestCreatorEntity;
 
-        public string idInputLabel { get; set; }
-
-        private string? _idInput;
-
-        public string? idInput
+        public NormalQuestCreatorViewModel NormalQuestCreatorEntity
         {
-            get { return _idInput; }
-            set 
-            {
-                _idInput = value;
-                OnPropertyChanged(nameof(idInput));
-            }
+            get { return normalQuestCreatorEntity; }
+            set { normalQuestCreatorEntity = value; }
         }
 
-        public string QuestDescriptionInputLabel { get; set; }
+        private EventQuestCreatorViewModel eventQuestCreatorEntity;
 
-        private string? questDescriptionInput;
-
-        public string? QuestDescriptionInput
+        public EventQuestCreatorViewModel EventQuestCreatorEntity
         {
-            get { return questDescriptionInput; }
-            set 
-            {
-                questDescriptionInput = value;
-                OnPropertyChanged(nameof(QuestDescriptionInput));
-            }
+            get { return eventQuestCreatorEntity; }
+            set { eventQuestCreatorEntity = value; }
         }
 
-        public string IncrementStatTypeInputLabel { get; set; }
 
-        private List<string>? statTypes;
-
-        public List<string>? StatTypes
-        {
-            get { return statTypes; }
-            set 
-            {
-                statTypes = value;
-
-                OnPropertyChanged(nameof(StatTypes));
-            }
-        }
-
-        private string? selectedStatType;
-
-        public string? SelectedStatType
-        {
-            get { return selectedStatType; }
-            set 
-            {
-                selectedStatType = value;
-                OnPropertyChanged(nameof(SelectedStatType));
-            }
-        }
-
-        public string IncrementStatAmountInputLabel { get; set; }
-
-        private float incrementStatAmountInput;
-
-        public float IncrementStatAmountInput
-        {
-            get { return incrementStatAmountInput; }
-            set 
-            {
-                incrementStatAmountInput = value > 0 ? value >= 1 ? 1 : value : 0.1f;
-
-                OnPropertyChanged(nameof(IncrementStatAmountInput));
-            }
-        }
-
-        public ICommand? CreateQuest { get; }
-
+        
         public QuestCreatorViewModel()
         {
-            idInputLabel = "Provide Quest Unique id:";
-
-            QuestDescriptionInputLabel = "Provide Quest Description and specifics:";
-
-            IncrementStatTypeInputLabel = "Provide which stat will be incremented on quest completion:";
-
-            IncrementStatAmountInputLabel = "Provide how much amount the stat should increase: Range[0<x<=1]";
-
-            StatTypes = new List<string>()
-            {
-                "STR",
-                "AGI",
-                "INT",
-                "COMM",
-                "MENSTB",
-                "CRT",
-                "HP",
-                "HYG"
-            };
-
-            CreateQuestButtonLabel = "Create Quest";
-
-            CreateQuest = new QuestCreatingCommand(this);
+            
 
         }
     }

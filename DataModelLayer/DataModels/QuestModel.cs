@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
 namespace DataModelLayer.DataModels
 {
@@ -22,6 +18,8 @@ namespace DataModelLayer.DataModels
 
         public int QuestAcceptedFlag { get; set; }
 
+        public int QuestType { get; set; }
+
         public QuestModel()
         {
             
@@ -36,6 +34,7 @@ namespace DataModelLayer.DataModels
             IncrementStatType = obj.IncrementStatType;
             StackedNumber = obj.StackedNumber;
             QuestAcceptedFlag = obj.QuestAcceptedFlag;
+            QuestType = obj.QuestType;
         }
     }
 }
