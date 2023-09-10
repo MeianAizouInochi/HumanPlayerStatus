@@ -1,12 +1,214 @@
-﻿<UserControl x:Class="HumanPlayerStatusApp.Views.NormalQuestCreatorView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:HumanPlayerStatusApp.Views"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+﻿<UserControl
+    x:Class="HumanPlayerStatusApp.Views.NormalQuestCreatorView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:HumanPlayerStatusApp.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+
+    <UserControl.Resources>
+
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+
+                <ResourceDictionary Source="IconResources.xaml" />
+
+            </ResourceDictionary.MergedDictionaries>
+
+        </ResourceDictionary>
+
+    </UserControl.Resources>
+
+    <Grid x:Name="NormalQuestCreatorViewGrid">
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+            <Grid x:Name="ChildofNormalQuestCreatorGrid_1">
+
+                <Border
+                    Padding="15,5,15,5"
+                    BorderBrush="White"
+                    BorderThickness="0,0,1,0">
+
+                    <Grid x:Name="ChildofNormalQuestCreatorChild_1">
+
+                        <Grid.RowDefinitions>
+
+                            <!--  ID Input Label  -->
+                            <RowDefinition Height="auto" />
+
+                            <!--  Id Input  -->
+                            <RowDefinition Height="auto" />
+
+                            <!--  Quest Description Input Label  -->
+                            <RowDefinition Height="auto" />
+
+                            <!--  Quest Description Input  -->
+                            <RowDefinition Height="auto" />
+
+                            <!--  Increment Stat Type Input Label  -->
+                            <RowDefinition Height="auto" />
+
+                            <!--  Increment Stat Type Input combo Box  -->
+                            <RowDefinition Height="auto" />
+
+                            <!--  Increment stat type amount input label  -->
+                            <RowDefinition Height="auto" />
+
+                            <!--  Increment stat type amount input  -->
+                            <RowDefinition Height="auto" />
+
+                            <!--  Create quest button  -->
+                            <RowDefinition Height="auto" />
+
+                        </Grid.RowDefinitions>
+
+                        <!--  Id Input Label  -->
+                        <TextBlock
+                            Grid.Row="0"
+                            Margin="0,0,0,10"
+                            FontSize="18"
+                            Text="{Binding idInputLabel}"
+                            TextWrapping="Wrap" />
+
+                        <!--  Id Input  -->
+                        <Grid Grid.Row="1" Margin="0,0,0,25">
+
+                            <Border Background="White" CornerRadius="15">
+
+                                <TextBox
+                                    Padding="10"
+                                    Background="Transparent"
+                                    BorderBrush="Transparent"
+                                    BorderThickness="0"
+                                    FontSize="15"
+                                    Text="{Binding idInput}" />
+
+                            </Border>
+
+                        </Grid>
+
+                        <!--  Quest Description Input Label  -->
+                        <TextBlock
+                            Grid.Row="2"
+                            Margin="0,0,0,10"
+                            FontSize="18"
+                            Text="{Binding QuestDescriptionInputLabel}"
+                            TextWrapping="Wrap" />
+
+                        <!--  Quest Description Input  -->
+                        <Grid Grid.Row="3" Margin="0,0,0,25">
+
+                            <Border Background="White" CornerRadius="15">
+
+                                <TextBox
+                                    Padding="15"
+                                    Background="Transparent"
+                                    BorderBrush="Transparent"
+                                    BorderThickness="0"
+                                    FontSize="15"
+                                    Text="{Binding QuestDescriptionInput}" />
+
+                            </Border>
+
+                        </Grid>
+
+                        <!--  Increment Stat Type Input Label  -->
+                        <TextBlock
+                            Grid.Row="4"
+                            Margin="0,0,0,10"
+                            FontSize="18"
+                            Text="{Binding IncrementStatTypeInputLabel}"
+                            TextWrapping="Wrap" />
+
+                        <!--  Increment Stat Type Input combo Box  -->
+                        <ComboBox
+                            Grid.Row="5"
+                            Margin="0,0,0,25"
+                            Padding="7"
+                            FontSize="15"
+                            ItemsSource="{Binding StatTypes}"
+                            SelectedItem="{Binding SelectedStatType}" />
+
+                        <!--  Increment stat type amount input label  -->
+                        <TextBlock
+                            Grid.Row="6"
+                            Margin="0,0,0,10"
+                            FontSize="18"
+                            Text="{Binding IncrementStatAmountInputLabel}"
+                            TextWrapping="Wrap" />
+
+                        <!--  Increment stat type amount input  -->
+                        <Grid Grid.Row="7" Margin="0,0,0,25">
+
+                            <Border Background="White" CornerRadius="15">
+
+                                <TextBox
+                                    Padding="15"
+                                    Background="Transparent"
+                                    BorderBrush="Transparent"
+                                    BorderThickness="0"
+                                    FontSize="15"
+                                    Text="{Binding IncrementStatAmountInput}" />
+
+                            </Border>
+
+                        </Grid>
+
+                        <!--  Create quest button  -->
+                        <Button
+                            Grid.Row="8"
+                            Background="Transparent"
+                            BorderBrush="Transparent"
+                            BorderThickness="0"
+                            Command="{Binding CreateQuest}">
+
+                            <Border
+                                Padding="15,5,15,5"
+                                BorderBrush="White"
+                                BorderThickness="2"
+                                CornerRadius="15">
+
+                                <Grid>
+
+                                    <Grid.ColumnDefinitions>
+
+                                        <ColumnDefinition Width="auto" />
+
+                                        <ColumnDefinition Width="*" />
+
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Grid.Column="0" Content="{Binding CreateQuestButtonLabel}" />
+
+                                    <ContentPresenter Grid.Column="1">
+
+                                        <ContentPresenter.Content>
+
+                                            <ContentPresenter ContentTemplate="{StaticResource CraftIcon}" />
+
+                                        </ContentPresenter.Content>
+
+                                    </ContentPresenter>
+
+                                </Grid>
+
+                            </Border>
+
+                        </Button>
+
+                    </Grid>
+
+                </Border>
+
+            </Grid>
+
+        </ScrollViewer>
+
     </Grid>
+
 </UserControl>

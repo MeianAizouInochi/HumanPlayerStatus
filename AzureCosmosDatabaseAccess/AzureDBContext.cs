@@ -73,7 +73,7 @@ namespace AzureCosmosDatabaseAccess
 
 
         /// <summary>
-        /// This method gets all the items with the partition key "Quest" in the container HumanPlayerQuestData in Azure Cosmos DB.
+        /// This method gets all the NormalQuest type items with the partition key "Quest" in the container HumanPlayerQuestData in Azure Cosmos DB.
         /// </summary>
         /// <returns>Task<List<QuestModel>></returns>
         public async Task<List<QuestModel>> GetItemsInQuestContainer() 
@@ -86,9 +86,9 @@ namespace AzureCosmosDatabaseAccess
             //Creating Query using the QueryDefinition Class.
             var parameterizedQuery = new QueryDefinition
                 (
-                query: "SELECT * FROM HumanPlayerData c WHERE c.Id = @partitionKey"
+                query: "SELECT * FROM HumanPlayerData c WHERE c.Id = @partitionKey AND c.QuestType = @qtype"
                 )
-                .WithParameter("@partitionKey", "Quest");
+                .WithParameter("@partitionKey", "Quest").WithParameter("@qtype", 0);
 
 
             //Creating a Feed Iterator to read through page, and passing QueryDefinition
@@ -114,6 +114,39 @@ namespace AzureCosmosDatabaseAccess
             return Quests;
         }
 
+
+        /// <summary>
+        /// This method gets all the EventQuest type items with the partition key "Quest" in the container HumanPlayerQuestData in Azure Cosmos DB.
+        /// </summary>
+        /// <returns>Task<List<EventQuestModel>></returns>
+        public async Task<List<EventQuestModel>> GetItemsInEventQuestContainer()
+        {
+            Database db  = _Client.GetDatabase(DatabaseId);
+
+            Container container = db.GetContainer(HumanPlayerDataContainerId);
+
+            var parametricQuery = new QueryDefinition(
+                query: "SELECT * FROM HumanPlayerData c WHERE c.Id = @partitionkey AND c.QuestType = @qtype"
+                ).WithParameter("@partitionkey","Quest")
+                .WithParameter("@qtype",1);
+
+            List<EventQuestModel> EventQuests = new List<EventQuestModel>();
+
+            using (FeedIterator<EventQuestModel> feed = container.GetItemQueryIterator<EventQuestModel>(queryDefinition:parametricQuery))
+            {
+                while (feed.HasMoreResults)
+                {
+                    FeedResponse<EventQuestModel> res = await feed.ReadNextAsync();
+
+                    foreach (EventQuestModel e in res)
+                    { 
+                        EventQuests.Add(e);
+                    }
+                }
+            }
+
+            return EventQuests;
+        }
 
         /// <summary>
         /// This Function Updates the Quest Item in the Container.

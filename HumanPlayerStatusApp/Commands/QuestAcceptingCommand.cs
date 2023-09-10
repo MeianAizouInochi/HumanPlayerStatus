@@ -64,7 +64,6 @@ namespace HumanPlayerStatusApp.Commands
 
                 }
 
-
                 await DBContext.UpdateQuest(_model);
 
                 _questListItemViewModel.QuestAcceptedFlag = _questAcceptedFlag;

@@ -31,7 +31,9 @@ namespace HumanPlayerStatusApp.ViewModel
         
         public QuestCreatorViewModel()
         {
-            
+            NormalQuestCreatorEntity = new NormalQuestCreatorViewModel();
+
+            EventQuestCreatorEntity = new EventQuestCreatorViewModel();
 
         }
     }

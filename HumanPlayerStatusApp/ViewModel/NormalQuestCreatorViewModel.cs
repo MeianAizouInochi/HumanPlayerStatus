@@ -10,7 +10,6 @@ namespace HumanPlayerStatusApp.ViewModel
 {
     public class NormalQuestCreatorViewModel:ViewModelBase
     {
-
         public string? CreateQuestButtonLabel { get; set; }
 
         public string idInputLabel { get; set; }
@@ -83,11 +82,7 @@ namespace HumanPlayerStatusApp.ViewModel
             }
         }
 
-
-
         public ICommand? CreateQuest { get; }
-
-
 
         public NormalQuestCreatorViewModel()
         {

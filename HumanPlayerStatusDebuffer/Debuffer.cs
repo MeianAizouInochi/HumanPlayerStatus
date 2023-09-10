@@ -58,7 +58,8 @@ namespace HumanPlayerStatusDebuffer
 
                         if (ts.Days > 1)
                         {
-                            ps.DeuffRates[index] += 0.1F;
+                            ps.DebuffRates[index] += 0.1F;
+                            ps.DebuffRates[index] = (float)Math.Round(ps.DebuffRates[index], 2);
                         }
                     }
                 }

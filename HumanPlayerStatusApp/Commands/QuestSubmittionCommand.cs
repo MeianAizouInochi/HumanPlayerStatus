@@ -30,7 +30,6 @@ namespace HumanPlayerStatusApp.Commands
         public override void Execute(object? parameter)
         {
             _ = DbSubmitQuest();
-
         }
 
         //TODO: Create a Transaction here, or call a transaction from azuredbcontext here.
@@ -242,6 +241,11 @@ namespace HumanPlayerStatusApp.Commands
                 _questListItemViewModel.QuestAcceptedFlag = _questAcceptedFlag;
 
                 _questListItemViewModel.StackedNumber = _model.StackedNumber;
+
+                if(_questListItemViewModel is EventQuestListItemViewModel)
+                {
+                    ((EventQuestListItemViewModel)_questListItemViewModel).EventCompletionStatus = "Completed";
+                }
 
             }
             catch (CosmosException CosmosEx) 

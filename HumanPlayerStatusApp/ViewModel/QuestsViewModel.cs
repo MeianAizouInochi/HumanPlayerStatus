@@ -65,8 +65,8 @@ namespace HumanPlayerStatusApp.ViewModel
                         AcceptButtonLabel = "Accept Quest",
                         DeclineButtonLabel = "Decline Quest",
                         SubmitButtonLabel = "Submit Quest",
-                        StartDate = (new DateTime(Q.StartDate[0], Q.StartDate[1], Q.StartDate[2])).ToString("dd/MM/yy"),
-                        EndDate = (new DateTime(Q.EndDate[0], Q.EndDate[1], Q.EndDate[2])).ToString("dd/MM/yy"),
+                        StartDate = (new DateTime(Q.StartDate[2], Q.StartDate[1], Q.StartDate[0])).ToString("dd/MM/yyyy"),
+                        EndDate = (new DateTime(Q.EndDate[2], Q.EndDate[1], Q.EndDate[0])).ToString("dd/MM/yyyy"),
                         EventCompletionStatus = Q.EventCompletionStatus ? "Completed" : "Not Completed",
                         EventState = Q.EventState ? "OnGoging" : "Ended"
                     });
@@ -88,7 +88,8 @@ namespace HumanPlayerStatusApp.ViewModel
             }
             catch (Exception ex)
             {
-                MessageBoxResult res = MessageBox.Show(ex.Message + "\n Click Ok to Retry or Cancel to Exit Application!", "Error", MessageBoxButton.OKCancel);
+
+                MessageBoxResult res = MessageBox.Show(ex.Message + "\nClick Ok to Retry or Cancel to Exit Application!", "Error", MessageBoxButton.OKCancel);
 
                 if (res == MessageBoxResult.OK)
                 {
