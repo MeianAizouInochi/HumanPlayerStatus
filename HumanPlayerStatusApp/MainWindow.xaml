@@ -8,7 +8,7 @@
     xmlns:viewmodels="clr-namespace:HumanPlayerStatusApp.ViewModel"
     xmlns:views="clr-namespace:HumanPlayerStatusApp.Views"
     Title="Human Player Status Window"
-    MinWidth="800"
+    MinWidth="1000"
     MinHeight="600"
     MaxWidth="1360"
     MaxHeight="768"

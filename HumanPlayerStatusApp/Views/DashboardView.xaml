@@ -190,6 +190,7 @@
                                 <RowDefinition Height="auto" />
                                 <RowDefinition Height="auto" />
                                 <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
                             </Grid.RowDefinitions>
 
                             <!--  3 Columns  -->
@@ -206,146 +207,172 @@
 
                             </Grid.ColumnDefinitions>
 
-                            <!--  stat labels  -->
+                            <!--  Headings  -->
                             <Label
                                 Grid.Row="0"
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Content="{Binding StatTypeHeadingLabel}"
+                                FontFamily="Courier New"
+                                FontSize="19"
+                                FontWeight="Normal" />
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                Content="{Binding StatValueHeadingLabel}"
+                                FontFamily="Courier New"
+                                FontSize="19"
+                                FontWeight="Normal" />
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                VerticalAlignment="Center"
+                                Content="{Binding StatDebuffValueHeadingLabel}"
+                                FontFamily="Courier New"
+                                FontSize="19"
+                                FontWeight="Normal" />
+
+                            <!--  stat labels  -->
+                            <Label
+                                Grid.Row="1"
                                 Grid.Column="0"
                                 VerticalAlignment="Center"
                                 Content="{Binding Strength}"
                                 FontFamily="Courier New"
-                                FontSize="23"
+                                FontSize="17"
                                 FontWeight="Normal" />
 
                             <Label
-                                Grid.Row="1"
+                                Grid.Row="2"
                                 Grid.Column="0"
                                 VerticalAlignment="Center"
                                 Content="{Binding Agility}"
                                 FontFamily="Courier New"
-                                FontSize="23"
-                                FontWeight="Normal" />
-
-                            <Label
-                                Grid.Row="2"
-                                Grid.Column="0"
-                                VerticalAlignment="Center"
-                                Content="{Binding Intelligence}"
-                                FontFamily="Courier New"
-                                FontSize="23"
+                                FontSize="17"
                                 FontWeight="Normal" />
 
                             <Label
                                 Grid.Row="3"
                                 Grid.Column="0"
                                 VerticalAlignment="Center"
-                                Content="{Binding Communication}"
+                                Content="{Binding Intelligence}"
                                 FontFamily="Courier New"
-                                FontSize="23"
+                                FontSize="17"
                                 FontWeight="Normal" />
 
                             <Label
                                 Grid.Row="4"
                                 Grid.Column="0"
                                 VerticalAlignment="Center"
-                                Content="{Binding MentalStability}"
+                                Content="{Binding Communication}"
                                 FontFamily="Courier New"
-                                FontSize="23"
+                                FontSize="17"
                                 FontWeight="Normal" />
 
                             <Label
                                 Grid.Row="5"
                                 Grid.Column="0"
                                 VerticalAlignment="Center"
-                                Content="{Binding Creativity}"
+                                Content="{Binding MentalStability}"
                                 FontFamily="Courier New"
-                                FontSize="23"
+                                FontSize="17"
                                 FontWeight="Normal" />
 
                             <Label
                                 Grid.Row="6"
                                 Grid.Column="0"
                                 VerticalAlignment="Center"
-                                Content="{Binding HealthPoints}"
+                                Content="{Binding Creativity}"
                                 FontFamily="Courier New"
-                                FontSize="23"
+                                FontSize="17"
                                 FontWeight="Normal" />
 
                             <Label
                                 Grid.Row="7"
                                 Grid.Column="0"
                                 VerticalAlignment="Center"
+                                Content="{Binding HealthPoints}"
+                                FontFamily="Courier New"
+                                FontSize="17"
+                                FontWeight="Normal" />
+
+                            <Label
+                                Grid.Row="8"
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
                                 Content="{Binding Hygine}"
                                 FontFamily="Courier New"
-                                FontSize="23"
+                                FontSize="17"
                                 FontWeight="Normal" />
 
                             <!--  stat values  -->
-                            <TextBlock
-                                Grid.Row="0"
-                                Grid.Column="1"
-                                VerticalAlignment="Center"
-                                FontFamily="Consolas"
-                                FontSize="20"
-                                Text="{Binding Str}" />
-
                             <TextBlock
                                 Grid.Row="1"
                                 Grid.Column="1"
                                 VerticalAlignment="Center"
                                 FontFamily="Consolas"
-                                FontSize="20"
-                                Text="{Binding Agi}" />
+                                FontSize="17"
+                                Text="{Binding Str}" />
 
                             <TextBlock
                                 Grid.Row="2"
                                 Grid.Column="1"
                                 VerticalAlignment="Center"
                                 FontFamily="Consolas"
-                                FontSize="20"
-                                Text="{Binding Int}" />
+                                FontSize="17"
+                                Text="{Binding Agi}" />
 
                             <TextBlock
                                 Grid.Row="3"
                                 Grid.Column="1"
                                 VerticalAlignment="Center"
                                 FontFamily="Consolas"
-                                FontSize="20"
-                                Text="{Binding Comm}" />
+                                FontSize="17"
+                                Text="{Binding Int}" />
 
                             <TextBlock
                                 Grid.Row="4"
                                 Grid.Column="1"
                                 VerticalAlignment="Center"
                                 FontFamily="Consolas"
-                                FontSize="20"
-                                Text="{Binding MenStb}" />
+                                FontSize="17"
+                                Text="{Binding Comm}" />
 
                             <TextBlock
                                 Grid.Row="5"
                                 Grid.Column="1"
                                 VerticalAlignment="Center"
                                 FontFamily="Consolas"
-                                FontSize="20"
-                                Text="{Binding Crt}" />
+                                FontSize="17"
+                                Text="{Binding MenStb}" />
 
                             <TextBlock
                                 Grid.Row="6"
                                 Grid.Column="1"
                                 VerticalAlignment="Center"
                                 FontFamily="Consolas"
-                                FontSize="20"
-                                Text="{Binding Hp}" />
+                                FontSize="17"
+                                Text="{Binding Crt}" />
 
                             <TextBlock
                                 Grid.Row="7"
                                 Grid.Column="1"
                                 VerticalAlignment="Center"
                                 FontFamily="Consolas"
-                                FontSize="20"
+                                FontSize="17"
+                                Text="{Binding Hp}" />
+
+                            <TextBlock
+                                Grid.Row="8"
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                FontFamily="Consolas"
+                                FontSize="17"
                                 Text="{Binding Hyg}" />
 
                             <!--  stat debuffs  -->
-                            <Grid Grid.Row="0" Grid.Column="2">
+                            <Grid Grid.Row="1" Grid.Column="2">
 
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="auto" />
@@ -372,7 +399,7 @@
 
                             </Grid>
 
-                            <Grid Grid.Row="1" Grid.Column="2">
+                            <Grid Grid.Row="2" Grid.Column="2">
 
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="auto" />
@@ -399,7 +426,7 @@
 
                             </Grid>
 
-                            <Grid Grid.Row="2" Grid.Column="2">
+                            <Grid Grid.Row="3" Grid.Column="2">
 
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="auto" />
@@ -426,7 +453,7 @@
 
                             </Grid>
 
-                            <Grid Grid.Row="3" Grid.Column="2">
+                            <Grid Grid.Row="4" Grid.Column="2">
 
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="auto" />
@@ -453,7 +480,7 @@
 
                             </Grid>
 
-                            <Grid Grid.Row="4" Grid.Column="2">
+                            <Grid Grid.Row="5" Grid.Column="2">
 
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="auto" />
@@ -480,7 +507,7 @@
 
                             </Grid>
 
-                            <Grid Grid.Row="5" Grid.Column="2">
+                            <Grid Grid.Row="6" Grid.Column="2">
 
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="auto" />
@@ -507,7 +534,7 @@
 
                             </Grid>
 
-                            <Grid Grid.Row="6" Grid.Column="2">
+                            <Grid Grid.Row="7" Grid.Column="2">
 
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="auto" />
@@ -534,7 +561,7 @@
 
                             </Grid>
 
-                            <Grid Grid.Row="7" Grid.Column="2">
+                            <Grid Grid.Row="8" Grid.Column="2">
 
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="auto" />
@@ -672,7 +699,8 @@
 
                 <lvc:PolarChart
                     AngleAxes="{Binding AngleAxes}"
-                    InitialRotation="-45"
+                    InitialRotation="22.5"
+                    LegendPosition="Bottom"
                     Series="{Binding Series}" />
 
             </Grid>

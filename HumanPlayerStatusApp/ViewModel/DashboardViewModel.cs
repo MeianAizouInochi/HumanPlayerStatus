@@ -10,10 +10,17 @@ using System;
 using System.Threading.Tasks;
 using System.Windows;
 
+
 namespace HumanPlayerStatusApp.ViewModel
 {
     public class DashboardViewModel:ViewModelBase
     {
+        public string StatTypeHeadingLabel { get; }
+
+        public string StatValueHeadingLabel { get; }
+
+        public string StatDebuffValueHeadingLabel { get;}
+
         public string Strength { get; }
 
         public string Agility { get;}
@@ -258,9 +265,14 @@ namespace HumanPlayerStatusApp.ViewModel
             }
         }
 
-
         public DashboardViewModel()
         {
+            StatTypeHeadingLabel = "Stats";
+
+            StatValueHeadingLabel = "Values";
+
+            StatDebuffValueHeadingLabel = "Debuff Rates";
+
             HumanPlayerNameLabel = "Name: ";
 
             HumanPlayerName = "Meian";
@@ -308,14 +320,14 @@ namespace HumanPlayerStatusApp.ViewModel
                 HumanPlayerExp = _GetPlayerStats.HumanPlayerExp;
                 HumanPlayerLevelMaxExp = _GetPlayerStats.HumanPlayerLevelMaxExp;
                 HumanPlayerLevel = _GetPlayerStats.HumanPlayerLevel;
-                Str = _GetPlayerStats.STR;
-                Agi = _GetPlayerStats.AGI;
-                Int = _GetPlayerStats.INT;
-                Comm = _GetPlayerStats.COMM;
-                MenStb = _GetPlayerStats.MENSTB;
-                Crt = _GetPlayerStats.CRT;
-                Hp = _GetPlayerStats.HP;
-                Hyg = _GetPlayerStats.HYG;
+                Str = StatCalculator(_GetPlayerStats.STR, _GetPlayerStats.DebuffRates[0]);
+                Agi = StatCalculator(_GetPlayerStats.AGI, _GetPlayerStats.DebuffRates[1]);
+                Int = StatCalculator(_GetPlayerStats.INT, _GetPlayerStats.DebuffRates[2]);
+                Comm = StatCalculator(_GetPlayerStats.COMM, _GetPlayerStats.DebuffRates[3]);
+                MenStb = StatCalculator(_GetPlayerStats.MENSTB, _GetPlayerStats.DebuffRates[4]);
+                Crt = StatCalculator(_GetPlayerStats.CRT, _GetPlayerStats.DebuffRates[5]);
+                Hp = StatCalculator(_GetPlayerStats.HP, _GetPlayerStats.DebuffRates[6]);
+                Hyg = StatCalculator(_GetPlayerStats.HYG, _GetPlayerStats.DebuffRates[7]);
                 DebuffRates = _GetPlayerStats.DebuffRates;
                 Traits = string.Join(", ", _GetPlayerStats.Traits);
                 Debuffs = string.Join(", ", _GetPlayerStats.Debuffs);
@@ -356,13 +368,23 @@ namespace HumanPlayerStatusApp.ViewModel
         private void UpdateGraph()
         {
             Series = new ISeries[] { new PolarLineSeries<float> {
-                Values=new[]{Str,Agi,Int,Comm,MenStb,Crt,Hp,Hyg },
+                Values=new float[] { Str, Agi, Int, Comm, MenStb, Crt, Hp, Hyg },
                 LineSmoothness=0,
                 GeometrySize=0,
-                Fill = new SolidColorPaint(SKColors.LightGreen.WithAlpha(90))
-            } 
+                Fill = new SolidColorPaint(SKColors.LightGreen.WithAlpha(90)),
+                TooltipLabelFormatter = point =>{ return point.PrimaryValue.ToString("N2"); }
+            }
             };
 
+            Series[0].Name = "Stats Chart";
+
+        }
+
+        private float StatCalculator(float Stat, float _debuffrate)
+        {
+            float res = Stat - ((Stat * _debuffrate)/100.0F);
+
+            return (float)Math.Round(res,2);
         }
 
     }
