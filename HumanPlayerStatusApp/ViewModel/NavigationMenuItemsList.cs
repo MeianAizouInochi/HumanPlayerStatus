@@ -15,6 +15,8 @@ namespace HumanPlayerStatusApp.ViewModel
 
         public ICommand? NavigateToQuestCreator { get; set; }
 
+        public ICommand? NavigateToTransactionHistory { get; set;}
+
 
     }
 }
